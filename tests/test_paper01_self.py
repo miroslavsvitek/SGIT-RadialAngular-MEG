@@ -26,6 +26,7 @@ def main():
     assert np.max(np.abs(Qp.T@Qp-np.eye(16))) < 1e-10
     rot=rotate_modes(raw,Q)
     assert rot.shape==raw.shape
+    # Synthetic run field test.
     cats=np.array(['face']*5+['object']*5+['letter']*5+['false']*5)
     runs={}
     for r in range(1,6):
