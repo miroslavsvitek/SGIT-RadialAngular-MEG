@@ -3,8 +3,11 @@ message: "If you use this software, please cite the archived Zenodo release and 
 title: "Radial-Angular MEG Representational Geometry: Reproducibility Code and Archived Results"
 version: "1.1.0"
 date-released: 2026-09-13
+doi: "10.5281/zenodo.22734855"
+repository-code: "https://github.com/miroslavsvitek/SGIT-RadialAngular-MEG"
+url: "https://doi.org/10.5281/zenodo.22734855"
 authors:
-  - family-names: "Svitek"
+  - family-names: "Svítek"
     given-names: "Miroslav"
     orcid: "https://orcid.org/0000-0003-3971-6850"
     affiliation: "Czech Technical University in Prague"
@@ -20,7 +23,7 @@ preferred-citation:
   type: article
   title: "Reproducible Radial-Angular Geometry of Visual Category Representations in Human MEG: Phase Organization Beyond Amplitude Structure"
   authors:
-    - family-names: "Svitek"
+    - family-names: "Svítek"
       given-names: "Miroslav"
       orcid: "https://orcid.org/0000-0003-3971-6850"
   year: 2026
