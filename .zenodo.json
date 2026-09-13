@@ -1,0 +1,26 @@
+{
+  "title": "Radial-Angular MEG Representational Geometry: Reproducibility Code and Archived Results",
+  "description": "Code, frozen protocol snapshots, compact numerical outputs, numerical self-tests, and figure-generation material supporting the manuscript 'Reproducible Radial-Angular Geometry of Visual Category Representations in Human MEG: Phase Organization Beyond Amplitude Structure'. Source COGITATE neuroimaging data are not redistributed and remain available from the original public repositories.",
+  "creators": [
+    {
+      "name": "Svitek, Miroslav",
+      "orcid": "0000-0003-3971-6850",
+      "affiliation": "Czech Technical University in Prague"
+    }
+  ],
+  "version": "1.1.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "magnetoencephalography",
+    "MEG",
+    "representational similarity analysis",
+    "oscillatory phase",
+    "alpha oscillations",
+    "reproducibility",
+    "graph signal processing",
+    "radial-angular geometry"
+  ]
+}
