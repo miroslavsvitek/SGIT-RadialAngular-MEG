@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived Zenodo release and the accompanying manuscript."
+title: "Radial-Angular MEG Representational Geometry: Reproducibility Code and Archived Results"
+version: "1.1.0"
+date-released: 2026-09-13
+authors:
+  - family-names: "Svitek"
+    given-names: "Miroslav"
+    orcid: "https://orcid.org/0000-0003-3971-6850"
+    affiliation: "Czech Technical University in Prague"
+license: MIT
+keywords:
+  - magnetoencephalography
+  - representational similarity analysis
+  - oscillatory phase
+  - alpha oscillations
+  - reproducibility
+  - graph signal processing
+preferred-citation:
+  type: article
+  title: "Reproducible Radial-Angular Geometry of Visual Category Representations in Human MEG: Phase Organization Beyond Amplitude Structure"
+  authors:
+    - family-names: "Svitek"
+      given-names: "Miroslav"
+      orcid: "https://orcid.org/0000-0003-3971-6850"
+  year: 2026
+  journal: "Imaging Neuroscience"
