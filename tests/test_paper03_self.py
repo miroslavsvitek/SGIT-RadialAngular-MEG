@@ -8,17 +8,21 @@ from run_paper03 import component_rdm, shuffled_rdms, row_spearman, subject_scor
 
 rng = np.random.default_rng(2026091211)
 
+# 1) Component formulas finite on arbitrary complex fields.
 y = (0.3 + rng.random((4,16,50))) * np.exp(1j*rng.uniform(-np.pi,np.pi,(4,16,50)))
 i, a = component_rdm(y)
 assert i.shape == (6,) and a.shape == (6,)
 assert np.isfinite(i).all() and np.isfinite(a).all()
 
+# 2) Phase-label shuffle preserves every amplitude exactly and the phase multiset at each coordinate.
 ni, na, amp_err, phase_err = shuffled_rdms(y, rng, B=31, batch_size=8)
 assert ni.shape == (31,6) and na.shape == (31,6)
 assert amp_err < 1e-12, amp_err
 assert phase_err < 1e-12, phase_err
 assert np.isfinite(row_spearman(ni, ni)).all()
 
+# 3) End-to-end synthetic participant: a stable category-specific phase pattern should be more reliable
+# than independently shuffled phase assignments on average.
 base_amp = 0.8 + 0.15*rng.random((4,16,50))
 base_phase = np.empty((4,16,50), float)
 for c in range(4):
