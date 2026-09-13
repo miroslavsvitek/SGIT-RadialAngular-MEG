@@ -1,5 +1,7 @@
 # Reproducible radial-angular geometry of visual category representations in human MEG
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22734855.svg)](https://doi.org/10.5281/zenodo.22734855)
+
 This repository accompanies the manuscript **“Reproducible Radial-Angular Geometry of Visual Category Representations in Human MEG: Phase Organization Beyond Amplitude Structure”** (Miroslav Svítek; prepared for *Imaging Neuroscience*).
 
 ## Scientific purpose
@@ -74,8 +76,16 @@ The immediate implication for clinical neurophysiology is methodological: candid
 
 ## Citation and archival release
 
-A `CITATION.cff` and `.zenodo.json` are included. After the GitHub release is archived by Zenodo, cite the **version-specific Zenodo DOI** shown on the release record.
+The archived reproducibility package is available on Zenodo:
+
+**Version 1.1.0 DOI:** [10.5281/zenodo.22734855](https://doi.org/10.5281/zenodo.22734855)
+
+Recommended software citation:
+
+> Svítek, M. (2026). *Radial-Angular MEG Representational Geometry: Reproducibility Code and Archived Results* (Version 1.1.0). Zenodo. https://doi.org/10.5281/zenodo.22734855
+
+A machine-readable citation is provided in `CITATION.cff`.
 
 ## License
 
-Code is released under the MIT License. Source COGITATE data remain subject to the terms of their original repositories.
+Software code is released under the MIT License. Textual documentation, figures, and other non-code materials are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0), unless otherwise stated. Source COGITATE data remain subject to the terms of their original repositories.
