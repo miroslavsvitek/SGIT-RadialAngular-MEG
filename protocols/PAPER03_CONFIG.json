@@ -1,0 +1,57 @@
+{
+  "suite": "SGIT_PAPER03_PHASE_NULL_v1_0",
+  "purpose": "Frozen falsification test asking whether the observed INTERFERENCE and ANGLE reliabilities exceed an amplitude-preserving category-phase permutation null",
+  "status": "FROZEN_BEFORE_PAPER03_PHASE_NULL_OUTCOMES",
+  "cohorts": {
+    "CA_Level5A": ["CA101","CA102","CA103","CA104","CA106","CA107","CA108","CA109","CA110","CA112","CA113","CA114","CA116","CA118","CA121","CA125","CA126","CA127","CA128","CA131","CA132","CA133","CA134","CA136","CA138","CA139","CA142","CA144","CA145","CA146"],
+    "CB_Level6A_strict": ["CB001","CB002","CB003","CB006","CB008","CB011","CB015","CB016","CB019","CB020","CB022","CB023","CB024","CB027","CB028","CB029","CB030","CB031","CB035","CB036","CB038","CB039","CB040","CB041","CB042","CB044","CB045","CB049","CB050","CB051"]
+  },
+  "frozen_signal_pipeline": {
+    "K": 16,
+    "fs_hz": 250.0,
+    "theta_hz": [4.0, 8.0],
+    "alpha_hz": [8.0, 13.0],
+    "post_window_s": [0.05, 0.25],
+    "common_subspace_rank": 2,
+    "runs": [1,2,3,4,5],
+    "categories": ["face","object","letter","false"],
+    "partitions": "all 15 unique disjoint 2-vs-2 run partitions; unused fifth run ignored"
+  },
+  "tested_components": {
+    "INTERFERENCE": "-2 sum_m A_i,m A_j,m cos(phi_i,m - phi_j,m)",
+    "ANGLE": "2 sum_m [1 - cos(phi_i,m - phi_j,m)]"
+  },
+  "phase_null": {
+    "B": 999,
+    "seed": 2026091211,
+    "batch_size": 32,
+    "method": "Identical in principle to PAPER01 C1: for every complex field coordinate and independently in the two compared run-halves, keep each category amplitude exactly fixed while randomly permuting the four category phase labels at that coordinate. This preserves the phase multiset at every coordinate and preserves all amplitudes, but destroys category-specific phase assignment.",
+    "primary_metric": "spearman"
+  },
+  "primary_tests": {
+    "INTERFERENCE_phase_organization": "In each cohort, observed mean INTERFERENCE cross-run reliability must exceed the phase-null distribution with plus-one empirical p < 0.025, and participant-level observed minus subject null-mean must have one-sided sign-flip p < 0.025.",
+    "ANGLE_phase_organization": "In each cohort, observed mean ANGLE cross-run reliability must exceed the phase-null distribution with plus-one empirical p < 0.025, and participant-level observed minus subject null-mean must have one-sided sign-flip p < 0.025."
+  },
+  "decision_logic": {
+    "PHASE_ORGANIZATION_CONFIRMED": "Both INTERFERENCE and ANGLE pass both frozen tests in both cohorts.",
+    "WEIGHTED_PHASE_ORGANIZATION_ONLY": "INTERFERENCE passes both cohorts, ANGLE does not pass both cohorts.",
+    "ANGULAR_PHASE_ORGANIZATION_ONLY": "ANGLE passes both cohorts, INTERFERENCE does not pass both cohorts.",
+    "PHASE_ORGANIZATION_NOT_CONFIRMED": "Neither component satisfies its criterion in both cohorts."
+  },
+  "bootstrap_B": 20000,
+  "signflip_B": 100000,
+  "signflip_seed": 2026091212,
+  "alpha_one_sided": 0.025,
+  "paper02_reference_tolerance": 1e-10,
+  "interpretation_guardrail": "PAPER03 was designed after PAPER02 component results were known and reuses the same CA and CB cohorts. It is a frozen targeted falsification/adjudication analysis, not a new independent acquisition. Passing supports category-specific phase organization under this explicit null; it does not establish a universal phase code, consciousness specificity, causal synchronization, or physiological PAC.",
+  "provenance": {
+    "motivating_paper02_export": "SGIT_PAPER02_INTERFERENCE_RESULTS_20260912_172012.zip",
+    "motivating_paper02_export_sha256": "b28aec4e9046dfdf2ce79c6f0041701f08335e2594e1979230a96a62a3993b40",
+    "paper01_export_sha256": "7c12d93915b22c0c8aed373ba66fa399c3ca3c258afb3c2c549db98f0bab119d",
+    "paper02_validated_data_paths": {
+      "CA": "D:\\SGIT\\SGIT_COGITATE_Population_Runner_v2_1\\cohort_finetf",
+      "CB": "D:\\SGIT\\SGIT_LEVEL6_AllInOne_v3_0\\SGIT_LEVEL6_AllInOne_v3_1\\level6_data\\cohort_finetf_cb"
+    },
+    "paper02_subject_reference": "protocol/PAPER02_SUBJECT_REFERENCE.csv"
+  }
+}

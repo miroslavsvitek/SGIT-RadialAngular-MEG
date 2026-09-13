@@ -1,0 +1,15 @@
+{
+  "decision": "PHASE_ORGANIZATION_CONFIRMED",
+  "alpha_one_sided": 0.025,
+  "pass_by_component_and_cohort": {
+    "INTERFERENCE": {
+      "CA_Level5A": true,
+      "CB_Level6A_strict": true
+    },
+    "ANGLE": {
+      "CA_Level5A": true,
+      "CB_Level6A_strict": true
+    }
+  },
+  "guardrail": "PAPER03 is a frozen phase-null adjudication on previously analyzed cohorts; it is not a new independent acquisition and does not establish causality, PAC, a universal phase code, or consciousness specificity."
+}

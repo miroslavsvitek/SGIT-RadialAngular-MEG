@@ -1,0 +1,75 @@
+SGIT Level-5A frozen confirmatory plan 1.0
+Date: 2026-08-20
+Status: FROZEN BEFORE ANY NEW-SUBJECT OUTCOME INSPECTION
+
+Purpose
+Independent replication of the Level-4Z simplified candidate: early-alpha complex stimulus-locked ensemble geometry and its exact AMP/AP distance decomposition.
+
+Discovery subjects permanently excluded from the primary Level-5A cohort:
+CA124, CA140, CB013, CB072.
+
+Population requirements
+- New MEEG subjects only.
+- Minimum evaluable N=20; target N=30.
+- If N<20 after frozen QC: status INSUFFICIENT NEW DATA / no confirmatory decision.
+
+Frozen signal pipeline
+- K=16 GFT modes, 102 magnetometers, compatible frozen graph/eigenbasis.
+- fs=250 Hz.
+- theta 4-8 Hz and alpha 8-13 Hz used to construct the rank-2 common projector.
+- scipy Butterworth bandpass order 4, SOS, zero-phase sosfiltfilt over the full epoch; Hilbert analytic signal.
+- primary time window 50-250 ms.
+- categories: face, object, letter, false.
+- per subject/run/category: category evoked theta and alpha trajectories.
+- common rank-2 removal: concatenate theta+alpha evoked trajectories, average across the four categories, remove first two right singular vectors exactly as Level-4W/4Z.
+- primary alpha field Y_alpha = residual alpha evoked trajectory / sqrt(original trial-ensemble alpha modal power).
+
+Frozen subject QC
+- subject must be new (not one of the four discovery IDs);
+- exactly five analyzable runs 1-5;
+- all four categories in every run;
+- >=32 valid trials/category/run after QC;
+- K=16, finite trajectories, compatible 102-channel graph/eigenbasis;
+- exclusions locked before any subject RDM is computed and fully logged.
+
+Exact distances
+D_FULL(c,c') = sum |z_c-z_c'|^2
+D_AMP(c,c') = sum (A_c-A_c')^2
+D_AP(c,c')  = sum 2*A_c*A_c'*(1-cos(phi_c-phi_c'))
+D_FULL = D_AMP + D_AP to floating point tolerance.
+
+Primary cross-run endpoint
+- Enumerate all 15 unique disjoint 2-vs-2 run partitions from five runs; one run unused per partition.
+- Average Y_alpha across the two runs of each half BEFORE computing category distances.
+- Each half gives six FULL category-pair distances.
+- Partition score = Spearman rho between the two six-entry FULL RDMs.
+- Subject score R_s = mean rho across all 15 partitions.
+- Population estimand = mean R_s across new evaluable subjects.
+
+Primary success rule
+FULL alpha geometry is independently confirmed only if ALL hold:
+1) N >= 20 evaluable new subjects;
+2) one-sided subject-level sign-flip p < 0.025 for R_s > 0;
+   exact enumeration for N<=20; for N>20 use 100000 random sign flips, seed=20260820;
+3) mean R_FULL >= 0.50.
+
+Hierarchical mechanistic secondary endpoint (interpreted only if primary FULL succeeds)
+- Compute R_AP,s and R_AMP,s using the same 15 partitions.
+- delta_s = R_AP,s - R_AMP,s.
+AP-led decomposition confirmed only if ALL hold:
+1) mean(delta_s) >= 0.10;
+2) one-sided subject-level sign-flip p_delta < 0.025;
+3) mean(R_FULL,s - R_AP,s) <= 0.10.
+
+Secondary descriptive endpoints
+- canonical runs1-2 vs runs4-5 for FULL/AP/AMP;
+- fraction of subjects with R_s > 0;
+- all-run cross-subject semantic RDM congruence and category-label Monte Carlo null;
+- exact reconstruction audit D_FULL=D_AMP+D_AP;
+- AMP/AP fractional contributions to squared distance.
+
+Forbidden outcome-driven adaptations
+Do not change K, bands, window, filter, rank, normalization, categories, trial threshold, distance metric, run partitions, primary alpha, or effect floor after inspecting Level-5A outcomes. Failure cannot be rescued by searching other descriptors within Level-5A.
+
+Interpretation guardrails
+A positive Level-5A establishes replication of a coarse stimulus-locked ensemble geometry in new subjects. It does not establish consciousness specificity, causality, physiological amplitude-phase multiplication, PAC, or a universal fine-identity code.

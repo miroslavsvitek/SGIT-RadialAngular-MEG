@@ -1,0 +1,180 @@
+{
+  "CA_Level5A": {
+    "cohort": "CA_Level5A",
+    "N": 30,
+    "subjects": [
+      "CA101",
+      "CA102",
+      "CA103",
+      "CA104",
+      "CA106",
+      "CA107",
+      "CA108",
+      "CA109",
+      "CA110",
+      "CA112",
+      "CA113",
+      "CA114",
+      "CA116",
+      "CA118",
+      "CA121",
+      "CA125",
+      "CA126",
+      "CA127",
+      "CA128",
+      "CA131",
+      "CA132",
+      "CA133",
+      "CA134",
+      "CA136",
+      "CA138",
+      "CA139",
+      "CA142",
+      "CA144",
+      "CA145",
+      "CA146"
+    ],
+    "components": {
+      "INTERFERENCE": {
+        "observed_mean": 0.7429841269841273,
+        "phase_null_population_mean": 0.5309905461016573,
+        "phase_null_population_q025_q975": [
+          0.5029841269841271,
+          0.557720634920635
+        ],
+        "observed_minus_null_mean": 0.21199358088247,
+        "empirical_p_observed_gt_phase_null": 0.001,
+        "paired_subject_effect_mean": 0.2119935808824698,
+        "paired_subject_effect_ci95": [
+          0.16217366572922134,
+          0.2618292038069816
+        ],
+        "paired_subject_signflip_p_one_sided": 9.99990000099999e-06,
+        "paired_subject_signflip_mode": "monte_carlo_plus_one",
+        "paired_subject_signflip_B": 100000,
+        "fraction_subject_effect_positive": 0.9333333333333333,
+        "N": 30,
+        "null_B": 999
+      },
+      "ANGLE": {
+        "observed_mean": 0.6838095238095236,
+        "phase_null_population_mean": -0.0011820074042296264,
+        "phase_null_population_q025_q975": [
+          -0.04342857142857142,
+          0.04038730158730158
+        ],
+        "observed_minus_null_mean": 0.6849915312137532,
+        "empirical_p_observed_gt_phase_null": 0.001,
+        "paired_subject_effect_mean": 0.6849915312137536,
+        "paired_subject_effect_ci95": [
+          0.5969506077506077,
+          0.7617734973068306
+        ],
+        "paired_subject_signflip_p_one_sided": 9.99990000099999e-06,
+        "paired_subject_signflip_mode": "monte_carlo_plus_one",
+        "paired_subject_signflip_B": 100000,
+        "fraction_subject_effect_positive": 0.9666666666666667,
+        "N": 30,
+        "null_B": 999
+      }
+    },
+    "reference_consistency": {
+      "PASS": true,
+      "max_abs_diff": 1.1102230246251565e-16,
+      "tolerance": 1e-10
+    },
+    "audits": {
+      "max_amplitude_error": 2.220446049250313e-16,
+      "max_phase_multiset_error": 0.0
+    }
+  },
+  "CB_Level6A_strict": {
+    "cohort": "CB_Level6A_strict",
+    "N": 30,
+    "subjects": [
+      "CB001",
+      "CB002",
+      "CB003",
+      "CB006",
+      "CB008",
+      "CB011",
+      "CB015",
+      "CB016",
+      "CB019",
+      "CB020",
+      "CB022",
+      "CB023",
+      "CB024",
+      "CB027",
+      "CB028",
+      "CB029",
+      "CB030",
+      "CB031",
+      "CB035",
+      "CB036",
+      "CB038",
+      "CB039",
+      "CB040",
+      "CB041",
+      "CB042",
+      "CB044",
+      "CB045",
+      "CB049",
+      "CB050",
+      "CB051"
+    ],
+    "components": {
+      "INTERFERENCE": {
+        "observed_mean": 0.5881904761904763,
+        "phase_null_population_mean": 0.4832452770230548,
+        "phase_null_population_q025_q975": [
+          0.4566158730158729,
+          0.5093396825396825
+        ],
+        "observed_minus_null_mean": 0.10494519916742145,
+        "empirical_p_observed_gt_phase_null": 0.001,
+        "paired_subject_effect_mean": 0.10494519916742145,
+        "paired_subject_effect_ci95": [
+          0.023946470279803653,
+          0.18773376233376227
+        ],
+        "paired_subject_signflip_p_one_sided": 0.01106988930110699,
+        "paired_subject_signflip_mode": "monte_carlo_plus_one",
+        "paired_subject_signflip_B": 100000,
+        "fraction_subject_effect_positive": 0.7,
+        "N": 30,
+        "null_B": 999
+      },
+      "ANGLE": {
+        "observed_mean": 0.4954920634920635,
+        "phase_null_population_mean": -0.00103773614884726,
+        "phase_null_population_q025_q975": [
+          -0.04178412698412699,
+          0.03796825396825397
+        ],
+        "observed_minus_null_mean": 0.49652979964091076,
+        "empirical_p_observed_gt_phase_null": 0.001,
+        "paired_subject_effect_mean": 0.4965297996409107,
+        "paired_subject_effect_ci95": [
+          0.3983111810222922,
+          0.5901985255096366
+        ],
+        "paired_subject_signflip_p_one_sided": 9.99990000099999e-06,
+        "paired_subject_signflip_mode": "monte_carlo_plus_one",
+        "paired_subject_signflip_B": 100000,
+        "fraction_subject_effect_positive": 0.9666666666666667,
+        "N": 30,
+        "null_B": 999
+      }
+    },
+    "reference_consistency": {
+      "PASS": true,
+      "max_abs_diff": 1.1102230246251565e-16,
+      "tolerance": 1e-10
+    },
+    "audits": {
+      "max_amplitude_error": 2.220446049250313e-16,
+      "max_phase_multiset_error": 0.0
+    }
+  }
+}

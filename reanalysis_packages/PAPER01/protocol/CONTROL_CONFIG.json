@@ -1,0 +1,49 @@
+{
+  "suite": "SGIT_PAPER_CONTROLS_v1_0",
+  "purpose": "Reviewer-targeted robustness and falsification analyses for the Imaging Neuroscience manuscript",
+  "status": "FROZEN_BEFORE_CONTROL_OUTCOMES",
+  "cohorts": {
+    "CA_Level5A": ["CA101","CA102","CA103","CA104","CA106","CA107","CA108","CA109","CA110","CA112","CA113","CA114","CA116","CA118","CA121","CA125","CA126","CA127","CA128","CA131","CA132","CA133","CA134","CA136","CA138","CA139","CA142","CA144","CA145","CA146"],
+    "CB_Level6A_strict": ["CB001","CB002","CB003","CB006","CB008","CB011","CB015","CB016","CB019","CB020","CB022","CB023","CB024","CB027","CB028","CB029","CB030","CB031","CB035","CB036","CB038","CB039","CB040","CB041","CB042","CB044","CB045","CB049","CB050","CB051"]
+  },
+  "frozen_signal_pipeline": {
+    "K": 16,
+    "fs_hz": 250.0,
+    "theta_hz": [4.0, 8.0],
+    "alpha_hz": [8.0, 13.0],
+    "post_window_s": [0.05, 0.25],
+    "far_prestim_window_s": [-0.45, -0.25],
+    "common_subspace_rank": 2,
+    "runs": [1,2,3,4,5],
+    "categories": ["face","object","letter","false"]
+  },
+  "controls": {
+    "C1_phase_null": {
+      "B": 199,
+      "seed": 2026091201,
+      "description": "At each complex field coordinate, keep every category amplitude exactly fixed and independently permute the four category phases in the two compared halves."
+    },
+    "C2_random_basis": {
+      "B": 49,
+      "seed": 2026091202,
+      "description": "Fixed random orthogonal rotations of the same K=16 graph-mode subspace; same rotation is applied to all runs and participants within a null replicate."
+    },
+    "C2_oob_pca": {
+      "description": "For each disjoint 2-vs-2 partition, fit a KxK PCA rotation on the unused fifth run only, then apply that basis to both evaluated halves."
+    },
+    "C2_sensor_coordinate": {
+      "description": "Rank-matched sensor-coordinate reconstruction from the frozen first 16 graph modes using the frozen graph eigenvectors; not a full 102-mode/raw-sensor analysis."
+    },
+    "C3_far_prestim": {
+      "description": "Repeat the frozen identity-basis alpha pipeline in a matched 200-ms far-prestimulus window [-450,-250] ms and compare participant-level reliability with 50-250 ms poststimulus."
+    },
+    "C4_metric_robustness": {
+      "metrics": ["spearman","pearson","kendall"],
+      "description": "Re-evaluate FULL/AP/AMP RDM reliability under three association metrics without changing the neural representation."
+    }
+  },
+  "bootstrap_B": 20000,
+  "signflip_B": 100000,
+  "signflip_seed": 2026091204,
+  "interpretation_guardrail": "These controls use cohorts whose primary SGIT outcomes are already known. They are frozen robustness/falsification analyses, not a new prospective confirmation cohort and not evidence of consciousness specificity or causality."
+}

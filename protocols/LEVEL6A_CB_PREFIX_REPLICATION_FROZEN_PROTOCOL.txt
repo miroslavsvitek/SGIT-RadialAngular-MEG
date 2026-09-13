@@ -1,0 +1,19 @@
+SGIT Level-6A — External CB-prefix replication (frozen 2026-08-21)
+
+Rationale
+The already confirmed population cohort used CA-prefix subjects. This experiment uses previously unseen CB-prefix subjects without tuning to their neural outcomes.
+
+Important terminology
+The prefix is used as a deterministic external-cohort definition. Do NOT call this a cross-site replication unless independent COGITATE metadata confirm that CA/CB encode acquisition site.
+
+Cohort
+- CB prefix only.
+- Permanent exclusions: CB013 and CB072 (discovery subjects); CA124/CA140 remain permanently excluded globally.
+- Lexicographic candidate order.
+- Target N=30; minimum N=20.
+- Technical/QC exclusions only; no stopping on significance.
+
+Endpoints
+A) Exact Level-3A replication: K=16, alpha 8–13 Hz, 50–250 ms, H=E+S+B, Grassmann3, BA>0.25 and semantic MC p<0.05.
+B) Level-5A site-adapted replication: same bands/window/rank/distances/15 partitions and original thresholds; subject-specific K=16 graph must be stable across all five runs but need not equal the CA graph template.
+C) Strict original graph-template Level-5A is attempted and reported separately only if >=20 already-locked CB subjects happen to be template-compatible.

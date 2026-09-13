@@ -1,0 +1,2 @@
+SGIT Radial-Angular MEG Reproducibility Repository v1.1.0
+Release candidate for manuscript v6: 2026-09-13

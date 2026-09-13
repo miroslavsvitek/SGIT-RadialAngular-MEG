@@ -1,0 +1,576 @@
+{
+  "CA_Level5A": {
+    "cohort": "CA_Level5A",
+    "N": 30,
+    "subjects": [
+      "CA101",
+      "CA102",
+      "CA103",
+      "CA104",
+      "CA106",
+      "CA107",
+      "CA108",
+      "CA109",
+      "CA110",
+      "CA112",
+      "CA113",
+      "CA114",
+      "CA116",
+      "CA118",
+      "CA121",
+      "CA125",
+      "CA126",
+      "CA127",
+      "CA128",
+      "CA131",
+      "CA132",
+      "CA133",
+      "CA134",
+      "CA136",
+      "CA138",
+      "CA139",
+      "CA142",
+      "CA144",
+      "CA145",
+      "CA146"
+    ],
+    "component_order": [
+      "FULL",
+      "AP",
+      "AMP",
+      "ENERGY",
+      "PRODUCT",
+      "INTERFERENCE",
+      "ANGLE"
+    ],
+    "cross_predictive_order": [
+      "INTERFERENCE_TO_FULL",
+      "INTERFERENCE_TO_AP",
+      "PRODUCT_TO_AP",
+      "ENERGY_TO_FULL"
+    ],
+    "spearman": {
+      "FULL": {
+        "mean": 0.7851428571428574,
+        "ci95": [
+          0.7165714285714286,
+          0.8387301587301589
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "AP": {
+        "mean": 0.7484444444444445,
+        "ci95": [
+          0.6788571428571429,
+          0.8034285714285715
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "AMP": {
+        "mean": 0.6062222222222222,
+        "ci95": [
+          0.5006952380952382,
+          0.7007015873015872
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ENERGY": {
+        "mean": 0.7902222222222224,
+        "ci95": [
+          0.7198730158730159,
+          0.8435555555555555
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT": {
+        "mean": 0.7697777777777777,
+        "ci95": [
+          0.6967587301587302,
+          0.8286984126984128
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE": {
+        "mean": 0.7429841269841273,
+        "ci95": [
+          0.6629841269841271,
+          0.8126984126984128
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ANGLE": {
+        "mean": 0.6838095238095236,
+        "ci95": [
+          0.5931396825396826,
+          0.7622857142857142
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "cross_predictive_spearman": {
+      "INTERFERENCE_TO_FULL": {
+        "mean": 0.7458412698412699,
+        "ci95": [
+          0.6767603174603175,
+          0.8055873015873017
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE_TO_AP": {
+        "mean": 0.7351111111111112,
+        "ci95": [
+          0.6638730158730161,
+          0.7963174603174604
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT_TO_AP": {
+        "mean": 0.7012698412698414,
+        "ci95": [
+          0.6420317460317462,
+          0.7473015873015872
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ENERGY_TO_FULL": {
+        "mean": 0.7443174603174604,
+        "ci95": [
+          0.6838730158730161,
+          0.7863492063492062
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "secondary_metrics": {
+      "pearson": {
+        "INTERFERENCE": {
+          "mean": 0.7796108978530548,
+          "ci95": [
+            0.6999982252407239,
+            0.8483463074016594
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "PRODUCT": {
+          "mean": 0.8083088540638063,
+          "ci95": [
+            0.7355324079137934,
+            0.8638213887148234
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "ANGLE": {
+          "mean": 0.7044256755371607,
+          "ci95": [
+            0.6159393055326357,
+            0.7799361549691659
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "INTERFERENCE_TO_FULL": {
+          "mean": 0.7951698760671282,
+          "ci95": [
+            0.7193270957966564,
+            0.8568420802709401
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        }
+      },
+      "kendall": {
+        "INTERFERENCE": {
+          "mean": 0.6251851851851851,
+          "ci95": [
+            0.5493333333333332,
+            0.6962962962962963
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "PRODUCT": {
+          "mean": 0.6459259259259258,
+          "ci95": [
+            0.5760000000000001,
+            0.706962962962963
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "ANGLE": {
+          "mean": 0.5739259259259258,
+          "ci95": [
+            0.49451851851851847,
+            0.6444444444444444
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "INTERFERENCE_TO_FULL": {
+          "mean": 0.6213333333333334,
+          "ci95": [
+            0.5565925925925925,
+            0.6813333333333333
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        }
+      }
+    },
+    "contrasts": {
+      "AP_minus_PRODUCT": {
+        "mean": -0.021333333333333333,
+        "ci95": [
+          -0.05561904761904762,
+          0.01003174603174606
+        ],
+        "signflip_p_one_sided": 0.8893211067889321,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT_minus_AP": {
+        "mean": 0.021333333333333333,
+        "ci95": [
+          -0.010412698412698434,
+          0.05536507936507938
+        ],
+        "signflip_p_one_sided": 0.11451885481145188,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE_minus_PRODUCT": {
+        "mean": -0.0267936507936508,
+        "ci95": [
+          -0.06755873015873018,
+          0.012825396825396816
+        ],
+        "signflip_p_one_sided": 0.8960010399896001,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "audits": {
+      "max_exact_identity_abs_error": 2.842170943040401e-14,
+      "max_exact_identity_relative_error": 3.972054984926694e-16
+    }
+  },
+  "CB_Level6A_strict": {
+    "cohort": "CB_Level6A_strict",
+    "N": 30,
+    "subjects": [
+      "CB001",
+      "CB002",
+      "CB003",
+      "CB006",
+      "CB008",
+      "CB011",
+      "CB015",
+      "CB016",
+      "CB019",
+      "CB020",
+      "CB022",
+      "CB023",
+      "CB024",
+      "CB027",
+      "CB028",
+      "CB029",
+      "CB030",
+      "CB031",
+      "CB035",
+      "CB036",
+      "CB038",
+      "CB039",
+      "CB040",
+      "CB041",
+      "CB042",
+      "CB044",
+      "CB045",
+      "CB049",
+      "CB050",
+      "CB051"
+    ],
+    "component_order": [
+      "FULL",
+      "AP",
+      "AMP",
+      "ENERGY",
+      "PRODUCT",
+      "INTERFERENCE",
+      "ANGLE"
+    ],
+    "cross_predictive_order": [
+      "INTERFERENCE_TO_FULL",
+      "INTERFERENCE_TO_AP",
+      "PRODUCT_TO_AP",
+      "ENERGY_TO_FULL"
+    ],
+    "spearman": {
+      "FULL": {
+        "mean": 0.6797460317460318,
+        "ci95": [
+          0.6050793650793652,
+          0.748825396825397
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "AP": {
+        "mean": 0.6537142857142856,
+        "ci95": [
+          0.574984126984127,
+          0.7253365079365078
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "AMP": {
+        "mean": 0.48469841269841274,
+        "ci95": [
+          0.3763809523809524,
+          0.5881936507936506
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ENERGY": {
+        "mean": 0.7186031746031745,
+        "ci95": [
+          0.6558730158730158,
+          0.7740952380952381
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT": {
+        "mean": 0.709968253968254,
+        "ci95": [
+          0.6460952380952381,
+          0.7672412698412697
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE": {
+        "mean": 0.5881904761904763,
+        "ci95": [
+          0.48800000000000004,
+          0.6815238095238096
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ANGLE": {
+        "mean": 0.4954920634920635,
+        "ci95": [
+          0.39682539682539686,
+          0.5880634920634921
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "cross_predictive_spearman": {
+      "INTERFERENCE_TO_FULL": {
+        "mean": 0.6177142857142859,
+        "ci95": [
+          0.5332698412698413,
+          0.6962555555555556
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE_TO_AP": {
+        "mean": 0.6094603174603176,
+        "ci95": [
+          0.5193650793650794,
+          0.6902238095238096
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT_TO_AP": {
+        "mean": 0.6362539682539683,
+        "ci95": [
+          0.5763809523809524,
+          0.6895873015873016
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "ENERGY_TO_FULL": {
+        "mean": 0.6694603174603174,
+        "ci95": [
+          0.6090158730158729,
+          0.7236190476190476
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "secondary_metrics": {
+      "pearson": {
+        "INTERFERENCE": {
+          "mean": 0.6303733642129109,
+          "ci95": [
+            0.5332253314089951,
+            0.7210714868754418
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "PRODUCT": {
+          "mean": 0.7211299654478249,
+          "ci95": [
+            0.6542268491883333,
+            0.7787871036970284
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "ANGLE": {
+          "mean": 0.5234401397817853,
+          "ci95": [
+            0.4198507572284005,
+            0.622737372269606
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "INTERFERENCE_TO_FULL": {
+          "mean": 0.6707511527404252,
+          "ci95": [
+            0.5871740705261583,
+            0.7489174588465849
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        }
+      },
+      "kendall": {
+        "INTERFERENCE": {
+          "mean": 0.4817777777777777,
+          "ci95": [
+            0.3908148148148148,
+            0.5685925925925925
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "PRODUCT": {
+          "mean": 0.5896296296296296,
+          "ci95": [
+            0.5315555555555556,
+            0.6444444444444444
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "ANGLE": {
+          "mean": 0.39851851851851855,
+          "ci95": [
+            0.3179259259259259,
+            0.47674074074074063
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        },
+        "INTERFERENCE_TO_FULL": {
+          "mean": 0.49777777777777765,
+          "ci95": [
+            0.4244444444444445,
+            0.5697777777777777
+          ],
+          "signflip_p_one_sided": 9.99990000099999e-06,
+          "signflip_mode": "monte_carlo_plus_one",
+          "signflip_B": 100000
+        }
+      }
+    },
+    "contrasts": {
+      "AP_minus_PRODUCT": {
+        "mean": -0.056253968253968285,
+        "ci95": [
+          -0.0998095238095238,
+          -0.01460000000000026
+        ],
+        "signflip_p_one_sided": 0.99270007299927,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "PRODUCT_minus_AP": {
+        "mean": 0.056253968253968285,
+        "ci95": [
+          0.013460317460317488,
+          0.09866666666666671
+        ],
+        "signflip_p_one_sided": 0.007709922900770993,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      },
+      "INTERFERENCE_minus_PRODUCT": {
+        "mean": -0.12177777777777776,
+        "ci95": [
+          -0.1859047619047619,
+          -0.06222222222222225
+        ],
+        "signflip_p_one_sided": 0.999740002599974,
+        "signflip_mode": "monte_carlo_plus_one",
+        "signflip_B": 100000
+      }
+    },
+    "audits": {
+      "max_exact_identity_abs_error": 2.842170943040401e-14,
+      "max_exact_identity_relative_error": 4.302478874748243e-16
+    }
+  }
+}

@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs,tabularx}
+\usepackage{hyperref}
+\usepackage{lineno}
+\usepackage{caption}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=black}
+\setlength{\parskip}{0.35em}\setlength{\parindent}{0pt}
+\title{Supplementary Information\\\large Reproducible Radial--Angular Geometry of Visual Category Representations in Human MEG}
+\author{Miroslav Svítek}
+\date{Manuscript v5 -- September 2026}
+\begin{document}
+\maketitle
+\linenumbers
+
+\section{Notation and pre-specified primary analysis}
+The main manuscript defines the full analysis notation. Briefly, $D$ denotes a category-to-category distance and $R$ denotes cross-run reliability of the resulting six-distance representational dissimilarity matrix (RDM). FULL is the full complex Euclidean distance, AMP is its amplitude-difference component, and AP is its amplitude-weighted angular component. Reliability $R$ ranges from -1 to 1 because the primary association measure is Spearman rank correlation.
+
+The prospective confirmation analysis used 102 magnetometers, $K=16$ graph Fourier transform modes, theta 4--8 Hz and alpha 8--13 Hz, the 50--250 ms poststimulus window, rank-2 category-independent common-subspace removal, alpha modal-power normalization, all 15 disjoint 2-vs-2 partitions of five runs, and the exact FULL/AP/AMP distance definitions. These choices were fixed before inspection of confirmation-cohort neural outcomes. The same representation was then applied unchanged to a second non-overlapping cohort from the same COGITATE resource. Later component and phase-null analyses reused these participants as robustness and mechanism-oriented analyses; they are not additional independent participant replications.
+
+\section{Exact component identities}
+For category responses $z_i=A_i e^{i\phi_i}$ and $z_j=A_j e^{i\phi_j}$, with $\Delta\phi_m=\phi_{i,m}-\phi_{j,m}$,
+\begin{align}
+D_{\rm FULL}&=\sum_m|z_{i,m}-z_{j,m}|^2,\\
+D_{\rm AMP}&=\sum_m(A_{i,m}-A_{j,m})^2,\\
+D_{\rm AP}&=\sum_m2A_{i,m}A_{j,m}[1-\cos(\Delta\phi_m)],\\
+D_{\rm FULL}&=D_{\rm AMP}+D_{\rm AP}.
+\end{align}
+The same full distance can be written as
+\begin{align}
+D_{\rm ENERGY}&=\sum_m(A_{i,m}^2+A_{j,m}^2),\\
+D_{\rm PRODUCT}&=\sum_m2A_{i,m}A_{j,m},\\
+D_{\rm INTERFERENCE}&=-\sum_m2A_{i,m}A_{j,m}\cos(\Delta\phi_m),\\
+D_{\rm ANGLE}&=\sum_m2[1-\cos(\Delta\phi_m)],
+\end{align}
+with
+\begin{align}
+D_{\rm AMP}&=D_{\rm ENERGY}-D_{\rm PRODUCT},\\
+D_{\rm AP}&=D_{\rm PRODUCT}+D_{\rm INTERFERENCE},\\
+D_{\rm FULL}&=D_{\rm ENERGY}+D_{\rm INTERFERENCE}.
+\end{align}
+ANGLE is an amplitude-free angular diagnostic; INTERFERENCE is a signed algebraic component and is not treated as a distance metric by itself.
+
+\section{Core cohort results}
+\begin{table}[h]
+\centering
+\caption{Cross-run RDM reliabilities. Confidence intervals are descriptive participant-bootstrap 95\% intervals based on 100,000 resamples.}
+\begin{tabular}{lcc}
+\toprule
+Endpoint & Confirmation cohort & Generalization cohort\\
+\midrule
+FULL & 0.785 [0.716,0.839] & 0.680 [0.603,0.749]\\
+AP & 0.748 [0.680,0.804] & 0.654 [0.575,0.725]\\
+AMP & 0.606 [0.500,0.701] & 0.485 [0.375,0.589]\\
+AP--AMP & 0.142 [0.081,0.210] & 0.169 [0.116,0.225]\\
+\bottomrule
+\end{tabular}
+\end{table}
+The prospective AP--AMP test yielded one-sided participant sign-flip $p=7\times10^{-5}$. The confirmation FULL endpoint had 30/30 participants positive and no exceedance among 100,000 sign flips ($p<10^{-5}$).
+
+\section{Coordinate, temporal, and association-metric robustness}
+\begin{table}[h]
+\centering
+\caption{Selected robustness results. OOB-PCA means out-of-bag principal component analysis, in which the unused fifth run fits the PCA basis for each 2-vs-2 partition. Kendall $\tau_b$ is a rank-association coefficient that corrects for ties.}
+\begin{tabular}{lcc}
+\toprule
+Control & Confirmation cohort & Generalization cohort\\
+\midrule
+OOB-PCA AP--AMP & 0.102 ($p=2.1\times10^{-4}$) & 0.166 ($p<10^{-5}$)\\
+Rank-matched sensor AP--AMP & 0.143 ($p=1.1\times10^{-4}$) & 0.116 ($p<10^{-5}$)\\
+Random rotations: median AP--AMP & 0.149 & 0.166\\
+Random rotations with positive contrast & 49/49 & 49/49\\
+Far-prestimulus FULL & -0.043 & 0.002\\
+Poststimulus FULL & 0.785 & 0.680\\
+Pearson AP--AMP & 0.132 & 0.163\\
+Kendall $\tau_b$ AP--AMP & 0.130 & 0.133\\
+\bottomrule
+\end{tabular}
+\end{table}
+These controls establish robustness within the tested low-dimensional sensor-derived subspace. They do not establish anatomical source-space generality.
+
+\section{Radial and angular component reliability}
+\begin{table}[h]
+\centering
+\caption{Exact component reliability, mean [95\% confidence interval].}
+\begin{tabular}{lcc}
+\toprule
+Component & Confirmation cohort & Generalization cohort\\
+\midrule
+ENERGY & 0.790 [0.720,0.844] & 0.719 [0.656,0.774]\\
+PRODUCT & 0.770 [0.697,0.829] & 0.710 [0.646,0.767]\\
+INTERFERENCE & 0.743 [0.663,0.813] & 0.588 [0.488,0.682]\\
+ANGLE & 0.684 [0.593,0.762] & 0.495 [0.397,0.588]\\
+INTERFERENCE$\rightarrow$FULL & 0.746 [0.677,0.806] & 0.618 [0.533,0.696]\\
+\bottomrule
+\end{tabular}
+\end{table}
+PRODUCT was more reliable than AP by 0.0563 in the generalization cohort ($p=0.0077$), supporting a mixed radial--angular interpretation rather than phase dominance.
+
+\section{Amplitude-preserving category-phase null}
+The phase-specific null leaves amplitudes assigned to their original categories and randomly permutes only the four category phase labels at each graph-mode/time coordinate, independently between compared run halves. It therefore preserves the amplitude field and the coordinate-wise set of phase values while destroying category-specific phase assignment.
+
+\begin{table}[h]
+\centering\small
+\caption{Observed component reliability versus amplitude-preserving phase-label null.}
+\begin{tabular}{llccccc}
+\toprule
+Cohort & Component & Observed & Null & Difference & 95\% CI & $p$\\
+\midrule
+Confirmation & INTERFERENCE & 0.743 & 0.531 & 0.212 & [0.162,0.262] & $<10^{-5}$\\
+Confirmation & ANGLE & 0.684 & -0.001 & 0.685 & [0.597,0.762] & $<10^{-5}$\\
+Generalization & INTERFERENCE & 0.588 & 0.483 & 0.105 & [0.024,0.188] & 0.0111\\
+Generalization & ANGLE & 0.495 & -0.001 & 0.497 & [0.398,0.590] & $<10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+ANGLE observed-minus-null effects were positive in 29/30 participants in each cohort. Implementation audits reconstructed the pre-null component scores to maximum absolute difference $1.11\times10^{-16}$; amplitude preservation error was at most $2.22\times10^{-16}$; phase-multiset audit error was zero.
+
+\section{The six-distance RDM and its limitation}
+With categories face ($F$), object ($O$), letter ($L$), and false font ($X$), each RDM contains exactly six unique distances: $F$--$O$, $F$--$L$, $F$--$X$, $O$--$L$, $O$--$X$, and $L$--$X$. For each participant, the 15 overlapping 2-vs-2 run partitions are averaged into one reliability score before population inference, avoiding partition-level pseudoreplication. Nevertheless, six distances are intrinsically low-dimensional. The archived confirmatory exports retain participant-level aggregate reliabilities rather than the complete pair-specific splitwise vectors needed for a valid post hoc item-level stability analysis. No claim is therefore made that all six category pairs contribute equally. Future reruns should retain pair-level splitwise values, report leave-one-pair-out sensitivity, and use richer stimulus sets to produce denser RDMs.
+
+\section{Ensemble-size dependence}
+Mean FULL reliability was approximately 0.008, 0.021, 0.075, 0.207, 0.404, 0.624, and 0.757 when category fields were estimated from 1, 2, 4, 8, 16, 32, and 64 repeated trials, respectively. A descriptive saturation fit gave $R_\infty=0.847$ and a trial-count scale $\tau_n=26.36$. These values describe the observed convergence curve; $\tau_n$ is neither a neuronal time constant nor a prescriptive trial requirement.
+
+\section{Standardized participant-level effect sizes}
+As an additional descriptive scale, paired standardized mean differences (Cohen's $d_z$, mean paired effect divided by the standard deviation of paired effects) were computed from archived participant-level values. For AP--AMP, $d_z=0.77$ in the confirmation cohort and $d_z=1.08$ in the within-resource generalization cohort. For the phase-null comparison, ANGLE observed-minus-null yielded $d_z=2.89$ and $1.82$, whereas INTERFERENCE observed-minus-null yielded $d_z=1.50$ and $0.44$ in the two cohorts, respectively. These standardized values are descriptive additions and do not replace the pre-specified sign-flip inference.
+
+\section{Interpretation boundary}
+The evidence supports reproducible mixed radial--angular visual-category geometry in a defined early-alpha MEG representation. The effect is demonstrated in a sensor-derived 16-dimensional subspace; anatomical source-space generality, independent-dataset replication, and causal perturbation remain future tests.
+
+\end{document}

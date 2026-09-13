@@ -1,0 +1,24 @@
+{
+  "level": "6A",
+  "completed_utc": "2026-08-21T23:52:36+00:00",
+  "cohort_definition": "CB-prefix external cohort; do not call this cross-site unless independent metadata confirm that prefix maps to acquisition site",
+  "level3_exact": {
+    "N": 30,
+    "mean_BA": 0.2852830186168035,
+    "p": 9.99990000099999e-06,
+    "decision": "REPLICATION_SUPPORTED"
+  },
+  "level5_siteadapted": {
+    "N": 30,
+    "mean_R_FULL": 0.6797460317460318,
+    "p": 0.0,
+    "PASS": true,
+    "AP_led_PASS": true
+  },
+  "level5_strict_template": {
+    "N": 30,
+    "status": "COMPLETED_CONFIRMATORY_TEST",
+    "PASS": true
+  },
+  "guardrail": "6A establishes external-prefix replication only. Site generalization requires explicit site metadata."
+}

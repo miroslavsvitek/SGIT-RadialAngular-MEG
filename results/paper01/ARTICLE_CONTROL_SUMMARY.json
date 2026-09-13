@@ -1,0 +1,318 @@
+{
+  "CA_Level5A": {
+    "cohort": "CA_Level5A",
+    "N": 30,
+    "subjects": [
+      "CA101",
+      "CA102",
+      "CA103",
+      "CA104",
+      "CA106",
+      "CA107",
+      "CA108",
+      "CA109",
+      "CA110",
+      "CA112",
+      "CA113",
+      "CA114",
+      "CA116",
+      "CA118",
+      "CA121",
+      "CA125",
+      "CA126",
+      "CA127",
+      "CA128",
+      "CA131",
+      "CA132",
+      "CA133",
+      "CA134",
+      "CA136",
+      "CA138",
+      "CA139",
+      "CA142",
+      "CA144",
+      "CA145",
+      "CA146"
+    ],
+    "keys": [
+      "FULL",
+      "AP",
+      "AMP"
+    ],
+    "observed_spearman": {
+      "FULL": {
+        "mean": 0.7851428571428574,
+        "ci95": [
+          0.7155555555555558,
+          0.8392380952380954
+        ]
+      },
+      "AP": {
+        "mean": 0.7484444444444445,
+        "ci95": [
+          0.679615873015873,
+          0.8036825396825397
+        ]
+      },
+      "AMP": {
+        "mean": 0.6062222222222222,
+        "ci95": [
+          0.4996825396825398,
+          0.7018412698412698
+        ]
+      },
+      "AP_minus_AMP": {
+        "mean": 0.14222222222222225,
+        "ci95": [
+          0.08050476190476187,
+          0.21028571428571438
+        ],
+        "signflip_p_one_sided": 4.999950000499995e-05,
+        "mode": "monte_carlo_plus_one",
+        "B": 100000
+      }
+    },
+    "C1_phase_null": {
+      "B": 199,
+      "observed_FULL": 0.7851428571428574,
+      "null_FULL_mean": 0.793909866794289,
+      "empirical_p_FULL": 0.995,
+      "paired_signflip_p_FULL_gt_nullmean": 0.7092529074709253,
+      "observed_AP": 0.7484444444444445,
+      "null_AP_mean": 0.7672489431283402,
+      "empirical_p_AP": 1.0,
+      "paired_signflip_p_AP_gt_nullmean": 0.8718312816871832,
+      "observed_AP_minus_AMP": 0.14222222222222225,
+      "null_AP_minus_AMP_mean": 0.16102672090611794,
+      "empirical_p_delta": 1.0,
+      "max_amplitude_error": 2.220446049250313e-16
+    },
+    "C2_basis": {
+      "GFT_identity_AP_minus_AMP": 0.14222222222222225,
+      "OOB_PCA": {
+        "FULL_mean": 0.762031746031746,
+        "AP_mean": 0.7550476190476191,
+        "AMP_mean": 0.653079365079365,
+        "AP_minus_AMP_mean": 0.10196825396825404,
+        "signflip_p_one_sided": 0.0002099979000209998
+      },
+      "rankmatched_sensor_coordinates": {
+        "FULL_mean": 0.7280000000000001,
+        "AP_mean": 0.7015873015873019,
+        "AMP_mean": 0.5582222222222222,
+        "AP_minus_AMP_mean": 0.1433650793650794,
+        "signflip_p_one_sided": 0.00010999890001099989,
+        "scope": "102 sensor coordinates reconstructed only from the frozen first 16 graph modes"
+      },
+      "random_orthogonal": {
+        "B": 49,
+        "FULL_mean_median": 0.7532698412698412,
+        "FULL_mean_q05_q95": [
+          0.7402412698412699,
+          0.7657904761904762
+        ],
+        "AP_minus_AMP_median": 0.14907936507936503,
+        "AP_minus_AMP_q05_q95": [
+          0.11461587301587291,
+          0.18869841269841264
+        ],
+        "fraction_delta_positive": 1.0,
+        "fraction_delta_ge_identity": 0.5918367346938775
+      }
+    },
+    "C3_prestim": {
+      "pre_FULL_mean": -0.043047619047619036,
+      "post_FULL_mean": 0.7851428571428574,
+      "post_minus_pre_FULL_mean": 0.8281904761904765,
+      "paired_signflip_p_one_sided": 9.99990000099999e-06,
+      "pre_AP_mean": -0.044190476190476204,
+      "post_AP_mean": 0.7484444444444445,
+      "post_minus_pre_AP_mean": 0.7926349206349207,
+      "paired_signflip_p_one_sided_AP": 9.99990000099999e-06
+    },
+    "C4_metric": {
+      "spearman": {
+        "FULL_mean": 0.7851428571428574,
+        "AP_mean": 0.7484444444444445,
+        "AMP_mean": 0.6062222222222222,
+        "AP_minus_AMP_mean": 0.14222222222222225,
+        "signflip_p_one_sided": 6.999930000699993e-05
+      },
+      "pearson": {
+        "FULL_mean": 0.8427557177223065,
+        "AP_mean": 0.8058085107399672,
+        "AMP_mean": 0.6736588056224198,
+        "AP_minus_AMP_mean": 0.13214970511754745,
+        "signflip_p_one_sided": 9.99990000099999e-06
+      },
+      "kendall": {
+        "FULL_mean": 0.6642962962962962,
+        "AP_mean": 0.623111111111111,
+        "AMP_mean": 0.4933333333333333,
+        "AP_minus_AMP_mean": 0.12977777777777777,
+        "signflip_p_one_sided": 2.999970000299997e-05
+      }
+    },
+    "audits": {
+      "max_amplitude_error_phase_null": 2.220446049250313e-16
+    }
+  },
+  "CB_Level6A_strict": {
+    "cohort": "CB_Level6A_strict",
+    "N": 30,
+    "subjects": [
+      "CB001",
+      "CB002",
+      "CB003",
+      "CB006",
+      "CB008",
+      "CB011",
+      "CB015",
+      "CB016",
+      "CB019",
+      "CB020",
+      "CB022",
+      "CB023",
+      "CB024",
+      "CB027",
+      "CB028",
+      "CB029",
+      "CB030",
+      "CB031",
+      "CB035",
+      "CB036",
+      "CB038",
+      "CB039",
+      "CB040",
+      "CB041",
+      "CB042",
+      "CB044",
+      "CB045",
+      "CB049",
+      "CB050",
+      "CB051"
+    ],
+    "keys": [
+      "FULL",
+      "AP",
+      "AMP"
+    ],
+    "observed_spearman": {
+      "FULL": {
+        "mean": 0.6797460317460318,
+        "ci95": [
+          0.6034285714285714,
+          0.748825396825397
+        ]
+      },
+      "AP": {
+        "mean": 0.6537142857142856,
+        "ci95": [
+          0.5751079365079365,
+          0.7249555555555555
+        ]
+      },
+      "AMP": {
+        "mean": 0.48469841269841274,
+        "ci95": [
+          0.37473015873015875,
+          0.5887015873015872
+        ]
+      },
+      "AP_minus_AMP": {
+        "mean": 0.16901587301587304,
+        "ci95": [
+          0.11568253968253975,
+          0.22463492063492066
+        ],
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "mode": "monte_carlo_plus_one",
+        "B": 100000
+      }
+    },
+    "C1_phase_null": {
+      "B": 199,
+      "observed_FULL": 0.6797460317460318,
+      "null_FULL_mean": 0.7193657174762702,
+      "empirical_p_FULL": 1.0,
+      "paired_signflip_p_FULL_gt_nullmean": 0.9587604123958761,
+      "observed_AP": 0.6537142857142856,
+      "null_AP_mean": 0.6995166307729122,
+      "empirical_p_AP": 1.0,
+      "paired_signflip_p_AP_gt_nullmean": 0.979380206197938,
+      "observed_AP_minus_AMP": 0.16901587301587304,
+      "null_AP_minus_AMP_mean": 0.21481821807449952,
+      "empirical_p_delta": 1.0,
+      "max_amplitude_error": 2.220446049250313e-16
+    },
+    "C2_basis": {
+      "GFT_identity_AP_minus_AMP": 0.16901587301587304,
+      "OOB_PCA": {
+        "FULL_mean": 0.751873015873016,
+        "AP_mean": 0.7249523809523809,
+        "AMP_mean": 0.5591111111111111,
+        "AP_minus_AMP_mean": 0.16584126984126993,
+        "signflip_p_one_sided": 9.99990000099999e-06
+      },
+      "rankmatched_sensor_coordinates": {
+        "FULL_mean": 0.694730158730159,
+        "AP_mean": 0.6686984126984128,
+        "AMP_mean": 0.5523809523809523,
+        "AP_minus_AMP_mean": 0.11631746031746036,
+        "signflip_p_one_sided": 9.99990000099999e-06,
+        "scope": "102 sensor coordinates reconstructed only from the frozen first 16 graph modes"
+      },
+      "random_orthogonal": {
+        "B": 49,
+        "FULL_mean_median": 0.635936507936508,
+        "FULL_mean_q05_q95": [
+          0.6114285714285714,
+          0.6628571428571429
+        ],
+        "AP_minus_AMP_median": 0.1663492063492063,
+        "AP_minus_AMP_q05_q95": [
+          0.13676190476190464,
+          0.2085079365079364
+        ],
+        "fraction_delta_positive": 1.0,
+        "fraction_delta_ge_identity": 0.42857142857142855
+      }
+    },
+    "C3_prestim": {
+      "pre_FULL_mean": 0.0019047619047619022,
+      "post_FULL_mean": 0.6797460317460318,
+      "post_minus_pre_FULL_mean": 0.67784126984127,
+      "paired_signflip_p_one_sided": 9.99990000099999e-06,
+      "pre_AP_mean": 0.0003809523809523845,
+      "post_AP_mean": 0.6537142857142856,
+      "post_minus_pre_AP_mean": 0.6533333333333334,
+      "paired_signflip_p_one_sided_AP": 9.99990000099999e-06
+    },
+    "C4_metric": {
+      "spearman": {
+        "FULL_mean": 0.6797460317460318,
+        "AP_mean": 0.6537142857142856,
+        "AMP_mean": 0.48469841269841274,
+        "AP_minus_AMP_mean": 0.16901587301587304,
+        "signflip_p_one_sided": 9.99990000099999e-06
+      },
+      "pearson": {
+        "FULL_mean": 0.7374426425341926,
+        "AP_mean": 0.6912107389970107,
+        "AMP_mean": 0.5281500735144677,
+        "AP_minus_AMP_mean": 0.16306066548254297,
+        "signflip_p_one_sided": 9.99990000099999e-06
+      },
+      "kendall": {
+        "FULL_mean": 0.5528888888888889,
+        "AP_mean": 0.5297777777777778,
+        "AMP_mean": 0.3967407407407407,
+        "AP_minus_AMP_mean": 0.133037037037037,
+        "signflip_p_one_sided": 9.99990000099999e-06
+      }
+    },
+    "audits": {
+      "max_amplitude_error_phase_null": 2.220446049250313e-16
+    }
+  }
+}

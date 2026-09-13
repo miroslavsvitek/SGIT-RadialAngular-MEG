@@ -1,0 +1,117 @@
+{
+  "level": "6D",
+  "status": "COMPLETED_EXPLORATORY_ENSEMBLE_CONVERGENCE",
+  "completed_utc": "2026-08-21T08:59:02+00:00",
+  "subjects": [
+    "CA101",
+    "CA102",
+    "CA103",
+    "CA104",
+    "CA106",
+    "CA107",
+    "CA108",
+    "CA109",
+    "CA110",
+    "CA112",
+    "CA113",
+    "CA114",
+    "CA116",
+    "CA118",
+    "CA121",
+    "CA125",
+    "CA126",
+    "CA127",
+    "CA128",
+    "CA131",
+    "CA132",
+    "CA133",
+    "CA134",
+    "CA136",
+    "CA138",
+    "CA139",
+    "CA142",
+    "CA144",
+    "CA145",
+    "CA146"
+  ],
+  "N": 30,
+  "n_values": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "repeats_per_n": 50,
+  "seed": 20260821,
+  "metric": "mean over 15 disjoint 2-vs-2 run Spearman RDM correlations for Level-5A FULL early-alpha geometry after rank-2 residualization",
+  "population_curve": [
+    {
+      "n": 1,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.008327619047619047,
+      "median_R_FULL": 0.013828571428571423,
+      "sd_between_subjects": 0.038044130709751135
+    },
+    {
+      "n": 2,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.020513015873015874,
+      "median_R_FULL": 0.01386666666666667,
+      "sd_between_subjects": 0.032100751134031755
+    },
+    {
+      "n": 4,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.07455746031746031,
+      "median_R_FULL": 0.046438095238095244,
+      "sd_between_subjects": 0.07757261095879545
+    },
+    {
+      "n": 8,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.20678603174603177,
+      "median_R_FULL": 0.14643809523809526,
+      "sd_between_subjects": 0.17626690322570113
+    },
+    {
+      "n": 16,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.4038907936507936,
+      "median_R_FULL": 0.3712,
+      "sd_between_subjects": 0.22463240592869044
+    },
+    {
+      "n": 32,
+      "N_subjects": 30,
+      "mean_R_FULL": 0.6236342857142856,
+      "median_R_FULL": 0.650704761904762,
+      "sd_between_subjects": 0.20613727275004629
+    },
+    {
+      "n": 64,
+      "N_subjects": 29,
+      "mean_R_FULL": 0.75696026272578,
+      "median_R_FULL": 0.7984000000000002,
+      "sd_between_subjects": 0.18740838599874896
+    }
+  ],
+  "saturating_fit": {
+    "fit_success": true,
+    "R_infinity": 0.8471224600652205,
+    "tau_trials": 26.36016571445554,
+    "covariance": [
+      [
+        0.003559975240270678,
+        0.21080898214080065
+      ],
+      [
+        0.21080898214080065,
+        15.637157557270406
+      ]
+    ]
+  },
+  "interpretation_guardrail": "Exploratory on an already-inspected CA cohort. It estimates measurement/ensemble convergence and is not an independent confirmation."
+}

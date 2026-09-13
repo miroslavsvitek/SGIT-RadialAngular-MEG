@@ -1,0 +1,17 @@
+{
+  "decision": "MIXED_PHASE_AND_PRODUCT",
+  "alpha_one_sided": 0.025,
+  "phase_specific_pass_by_cohort": {
+    "CA_Level5A": true,
+    "CB_Level6A_strict": true
+  },
+  "product_pass_by_cohort": {
+    "CA_Level5A": true,
+    "CB_Level6A_strict": true
+  },
+  "phase_only_angle_pass_by_cohort": {
+    "CA_Level5A": true,
+    "CB_Level6A_strict": true
+  },
+  "guardrail": "This decision adjudicates new frozen component endpoints on previously used cohorts; it is not a new independent acquisition."
+}

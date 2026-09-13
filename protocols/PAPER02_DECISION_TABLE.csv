@@ -1,0 +1,5 @@
+criterion,CA_requirement,CB_requirement,interpretation
+INTERFERENCE_reliability,mean>0 and one-sided sign-flip p<0.025,mean>0 and one-sided sign-flip p<0.025,phase-specific relation reproducible
+INTERFERENCE_TO_FULL,mean>0 and one-sided sign-flip p<0.025,mean>0 and one-sided sign-flip p<0.025,phase-specific relation contributes to FULL geometry
+PRODUCT_reliability,mean>0 and one-sided sign-flip p<0.025,mean>0 and one-sided sign-flip p<0.025,multiplicative amplitude scaffold reproducible
+ANGLE_reliability,descriptive/falsification,descriptive/falsification,pure unweighted phase geometry diagnostic

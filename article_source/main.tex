@@ -1,0 +1,546 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.05cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{lineno}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\usepackage{setspace}
+\usepackage{authblk}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{url}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}
+\setlength{\parskip}{0.32em}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\onehalfspacing
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Svítek -- radial--angular MEG geometry}
+\fancyhead[R]{Manuscript v6}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+
+\newcommand{\RFULL}{R_{\mathrm{FULL}}}
+\newcommand{\RAP}{R_{\mathrm{AP}}}
+\newcommand{\RAMP}{R_{\mathrm{AMP}}}
+\newcommand{\DFULL}{D_{\mathrm{FULL}}}
+\newcommand{\DAP}{D_{\mathrm{AP}}}
+\newcommand{\DAMP}{D_{\mathrm{AMP}}}
+\newcommand{\DINT}{D_{\mathrm{INTERFERENCE}}}
+\newcommand{\DANG}{D_{\mathrm{ANGLE}}}
+
+\title{\textbf{Reproducible Radial--Angular Geometry of Visual Category Representations in Human MEG: Phase Organization Beyond Amplitude Structure}}
+\author[1,2]{Miroslav Svítek}
+\affil[1]{Czech Institute of Informatics, Robotics and Cybernetics, Czech Technical University in Prague, Prague, Czech Republic}
+\affil[2]{Faculty of Natural Sciences, Matej Bel University, Banská Bystrica, Slovakia}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{center}
+ORCID: 0000-0003-3971-6850\\
+Correspondence: \href{mailto:miroslav.svitek@cvut.cz}{miroslav.svitek@cvut.cz}
+\end{center}
+
+\begin{abstract}
+Representational analyses of neural oscillations often reduce a complex response to amplitude or power, although phase provides an angular coordinate of the same signal. We tested whether visual-category structure in human magnetoencephalography (MEG) is reproducibly organized by both radial amplitude structure and angular phase relations. Using the public COGITATE MEG/electroencephalography resource, a pre-specified analysis mapped 102 magnetometers to a fixed 16-dimensional graph-spectral subspace and constructed stimulus-locked early-alpha complex category fields. For each participant, cross-run reliability $R$ (Spearman rank correlation) quantified how similarly the six pairwise distances among faces, objects, letters, and false fonts were ordered in independent run ensembles; $R=1$ indicates identical ordering, $R=0$ no rank association, and $R<0$ reversed ordering. In a prospective confirmation cohort ($N=30$), reliability of the full complex representational dissimilarity matrix was $\bar R_{\mathrm{FULL}}=0.785$ (95\% confidence interval, CI [0.716,0.839]). The exact amplitude-weighted angular component was more reliable than the amplitude-difference component ($\bar R_{\mathrm{AP}}=0.748$ versus $\bar R_{\mathrm{AMP}}=0.606$; difference 0.142, one-sided sign-flip $p=7\times10^{-5}$). A second non-overlapping cohort from the same resource ($N=30$), analyzed with the unchanged template, showed the same ordering ($0.680$, $0.654$, and $0.485$). The amplitude-product component itself was highly reliable (0.770 and 0.710), demonstrating a strong radial scaffold. Crucially, an amplitude-free angular geometry was reproducible (0.684 and 0.495) and exceeded an amplitude-preserving category-phase permutation null by 0.685 and 0.497; amplitude-weighted phase interference also exceeded its matched null by 0.212 and 0.105. The angular observed-minus-null effect was positive in 29/30 participants in each cohort. Alternative coordinate systems, a prestimulus control, and Pearson and Kendall rank-association controls did not explain the effect. These findings identify an ensemble-level complex representational geometry in which amplitude-product structure and category-specific phase organization contribute complementary repeatable information. The effect is demonstrated in a sensor-derived 16-dimensional subspace; source-space generality and fully independent-dataset replication remain to be tested.
+\end{abstract}
+
+\textbf{Keywords:} magnetoencephalography; representational geometry; oscillatory phase; alpha oscillations; representational similarity analysis; reproducibility
+
+\linenumbers
+
+\section{Introduction}
+Representational similarity analysis (RSA) characterizes neural representations by the relations among condition-specific response patterns rather than by any single sensor or feature \citep{Kriegeskorte2008,KriegeskorteKievit2013}. These relations are summarized in a representational dissimilarity matrix (RDM). In visual neuroscience, time-resolved magnetoencephalography (MEG) has shown that RDM structure emerges rapidly and can track perceptual and computational organization \citep{Cichy2014,Wardle2016}. For oscillatory MEG signals, however, a basic representational choice remains consequential: whether the response should be reduced to amplitude or power, or whether the complex-valued phase organization should also be retained.
+
+Phase is biologically relevant but difficult to interpret in isolation. Prestimulus phase can modulate visual detection and awareness \citep{Busch2009,Mathewson2009}; alpha rhythms have been related to cyclic sampling, excitability, and inhibitory gating \citep{VanRullen2016,JensenMazaheri2010}; and phase synchronization is widely discussed as a candidate contributor to large-scale coordination \citep{Palva2018}. These findings motivate phase-sensitive analyses, but they do not determine how phase should enter a representational distance, nor do they imply that phase must dominate amplitude.
+
+Prior MEG RSA provides an important precedent. Reddy et al. \citep{Reddy2021} constructed separate power- and phase-derived RDMs and showed that oscillatory phase can carry object-related representational information distinct from power. The present study addresses a different question. We begin from one complex-valued neural representation and decompose its Euclidean distance exactly into radial and angular contributions. We then ask which components are reproducible across independent run ensembles and whether angular organization survives a null manipulation that preserves all amplitudes while destroying category-specific phase assignment.
+
+For two complex coefficients $z_i=A_i e^{i\phi_i}$ and $z_j=A_j e^{i\phi_j}$, where $A_i,A_j\ge0$ are amplitudes and $\phi_i,\phi_j$ are phases,
+\begin{equation}
+|z_i-z_j|^2=(A_i-A_j)^2+2A_iA_j\left[1-\cos(\phi_i-\phi_j)\right].
+\label{eq:cosine}
+\end{equation}
+The first term is purely radial: it depends only on the difference in amplitudes. The second term is angular but amplitude weighted: the effect of a phase difference is larger when both coefficients have large amplitude. Equation~\ref{eq:cosine} is elementary Euclidean geometry in polar coordinates and is used here as an exact decomposition, not as a fitted model. Related magnitude--phase decompositions occur in other complex-valued imaging problems \citep{Terpstra2022}.
+
+Figure~\ref{fig:concept} summarizes the geometry and the distance terms used throughout the article. The scientific question is empirical: does category-specific angular organization provide repeatable neural structure beyond amplitude structure alone?
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/fig1_radial_angular_concept.pdf}
+\caption{\textbf{Radial--angular decomposition of complex representational distance.} The two complex coefficients are $z_i=A_i e^{i\phi_i}$ and $z_j=A_j e^{i\phi_j}$, with amplitudes $A_i=|z_i|$ and $A_j=|z_j|$, phases $\phi_i$ and $\phi_j$, and phase difference $\Delta\phi=\phi_i-\phi_j$. The full squared distance has two exactly equivalent decompositions: $D_{\mathrm{FULL}}=D_{\mathrm{AMP}}+D_{\mathrm{AP}}=D_{\mathrm{ENERGY}}+D_{\mathrm{INTERFERENCE}}$, with $D_{\mathrm{AMP}}=D_{\mathrm{ENERGY}}-D_{\mathrm{PRODUCT}}$ and $D_{\mathrm{AP}}=D_{\mathrm{PRODUCT}}+D_{\mathrm{INTERFERENCE}}$. $D_{\mathrm{PRODUCT}}=\sum_m2A_{i,m}A_{j,m}$ is large when both responses are strong, regardless of phase, and therefore captures co-activation magnitude. $D_{\mathrm{INTERFERENCE}}=-\sum_m2A_{i,m}A_{j,m}\cos(\Delta\phi_m)$ is signed: when phases align ($\cos\Delta\phi\approx1$), it is strongly negative and reduces $D_{\mathrm{FULL}}$. $D_{\mathrm{ANGLE}}=\sum_m2[1-\cos(\Delta\phi_m)]$ removes amplitude weighting and is used as a phase-only diagnostic. The index $m$ denotes one graph-mode/time coordinate of the final complex field.}
+\label{fig:concept}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Map of distance terms used throughout the article. The equalities in the second column are exact algebraic identities, not fitted statistical models.}
+\label{tab:terms}
+\begin{tabularx}{\linewidth}{l X X}
+\toprule
+Term & Definition / exact relation & Interpretation \\
+\midrule
+FULL & $D_{\mathrm{FULL}}=D_{\mathrm{AMP}}+D_{\mathrm{AP}}=D_{\mathrm{ENERGY}}+D_{\mathrm{INTERFERENCE}}$ & Complete squared complex distance.\\
+AMP & $D_{\mathrm{AMP}}=D_{\mathrm{ENERGY}}-D_{\mathrm{PRODUCT}}$ & Difference in radial amplitudes only.\\
+AP & $D_{\mathrm{AP}}=D_{\mathrm{PRODUCT}}+D_{\mathrm{INTERFERENCE}}$ & Amplitude-weighted angular contribution.\\
+ENERGY & $\sum_m(A_{i,m}^2+A_{j,m}^2)$ & Total radial energy of the two responses.\\
+PRODUCT & $\sum_m2A_{i,m}A_{j,m}$ & Co-activation magnitude: large when both responses are strong, independent of phase.\\
+INTERFERENCE & $-\sum_m2A_{i,m}A_{j,m}\cos(\Delta\phi_m)$ & Signed phase-dependent cross term; phase alignment makes it negative and reduces FULL distance.\\
+ANGLE & $\sum_m2[1-\cos(\Delta\phi_m)]$ & Amplitude-free angular diagnostic used to isolate phase organization.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+We tested four hypotheses. First, a fixed early-alpha complex representation should yield a reproducible four-category RDM across independent run ensembles. Second, within the same complex distance, the amplitude-weighted angular component should preserve cross-run geometry better than amplitude differences alone. Third, this ordering should not depend on one graph-spectral basis, one association coefficient, or a stable prestimulus geometry. Fourth, category-specific angular organization should exceed an amplitude-preserving phase-label null. A second $N=30$ cohort provided strict-template generalization to new participants within the same public resource; it was not treated as a fully independent experiment.
+
+\section{Methods}
+\subsection{Dataset, ethics, and cohort definition}
+This study is a secondary analysis of the public COGITATE magnetoencephalography/electroencephalography (MEG/EEG) dataset \citep{Liu2026}, acquired for the adversarial collaboration reported by the COGITATE Consortium \citep{Cogitate2025}. The source resource contains MEG/electroencephalography, eye tracking, and structural magnetic resonance imaging from 100 participants acquired at two centers with a standardized visual paradigm. The present analysis used the 102 MEG magnetometers and four coarse visual categories: faces, objects, letters, and false fonts. Orientation, duration, identity, and task-relevance factors were pooled for this category-level endpoint.
+
+No new participants were recruited or contacted. Ethics approval, informed consent, de-identification, and data-governance procedures were provided by the original investigators and are documented in the source publications and public release \citep{Cogitate2025,Liu2026}. The public data are archived in original format under DOI 10.17617/1.WQA3-WK71 and in Brain Imaging Data Structure (BIDS) format under DOI 10.17617/1.nzwp-7j89.
+
+Four participants used during representation development were excluded before the confirmatory cohort was formed. Thirty technically eligible new participants constituted the prospective confirmation cohort. A second set of 30 non-overlapping participants from the same COGITATE resource was analyzed with the unchanged representation and statistical construction. This second set is termed the \emph{within-resource generalization cohort}; it tests transfer to new participants without retuning, but it is not a fully independent dataset replication.
+
+\subsection{Analysis framework, notation, and meaning of reliability $R$}
+The analysis asks whether the geometry among four visual categories is stable across independent subsets of runs within the same participant. Throughout the article, $D$ denotes a \emph{distance between two category representations}, whereas $R$ denotes \emph{cross-run reliability of the six-distance RDM}. The two quantities must not be confused: the distances obey exact algebraic decompositions, whereas their reliabilities are correlations and therefore do not add algebraically.
+
+For participant $s$, run $r$, trial $q$, category $c$, temporal frequency band $b$, graph mode $k$, and time sample $t$, the final complex category field is denoted $Y_{\alpha,s,r,c}(k,t)$ and is defined in Section~2.3. The subscript $\alpha$ denotes the alpha band. The four categories are abbreviated only in equations as $F$ (face), $O$ (object), $L$ (letter), and $X$ (false font).
+
+For any distance definition $j$---for example FULL, AMP, AP, ENERGY, PRODUCT, INTERFERENCE, or ANGLE---the six unique category-pair distances are
+\begin{equation}
+(F,O),\ (F,L),\ (F,X),\ (O,L),\ (O,X),\ (L,X).
+\label{eq:sixpairs}
+\end{equation}
+These six values form the upper triangle of a $4\times4$ representational dissimilarity matrix (RDM). Reliability $R$ measures whether the ordering of these six distances is preserved between two run ensembles. The primary association coefficient is Spearman rank correlation. Thus $R=1$ means that all six category-pair distances have the same rank ordering in the two run ensembles; $R=0$ means no monotonic rank association; and $R=-1$ means a perfectly reversed ordering. A value such as $R=0.8$ is therefore a strong rank correspondence, not an 80\% classification accuracy or an 80\% probability.
+
+$R_{\mathrm{FULL}}$, $R_{\mathrm{AP}}$, and $R_{\mathrm{AMP}}$ denote participant-level RDM reliabilities computed from the FULL complex distance, the amplitude-weighted angular component, and the amplitude-difference component, respectively. Their formal calculation is given in Section~2.5.
+
+\subsection{Construction of the complex graph-spectral category field}
+The notation in this section is kept explicit because the final alpha representation is obtained through several transformations. The measured magnetometer vector for participant $s$, run $r$, and trial $q$ is
+\begin{equation}
+\bm y_{s,r,q}(t)\in\mathbb R^{102}.
+\end{equation}
+A symmetric six-nearest-neighbor graph was constructed from the three-dimensional magnetometer locations. With adjacency matrix $W$, degree matrix $D$, and graph Laplacian $L=D-W$, the eigendecomposition
+\begin{equation}
+L\bm u_k=\lambda_k\bm u_k
+\end{equation}
+defined the graph Fourier transform (GFT) basis \citep{Shuman2013,Huang2018}. The first $K=16$ ordered graph modes were retained. The graph-mode trajectory is
+\begin{equation}
+x_{s,r,q,k}(t)=\bm u_k^{\mathsf T}\bm y_{s,r,q}(t),\qquad k=1,\ldots,16.
+\label{eq:gft}
+\end{equation}
+Graph frequency describes spatial variation over sensors and is distinct from temporal oscillation frequency measured in hertz.
+
+Each graph-mode trajectory was filtered in two temporal frequency bands: theta, 4--8 Hz, and alpha, 8--13 Hz. A fourth-order Butterworth filter implemented as second-order sections was applied with zero-phase forward--backward filtering over the full epoch. The Hilbert transform then produced a complex analytic signal
+\begin{equation}
+z_{b,s,r,q,k}(t)=a_{b,s,r,q,k}(t)e^{i\phi_{b,s,r,q,k}(t)},
+\qquad b\in\{\theta,\alpha\},
+\label{eq:analytic}
+\end{equation}
+where $a_{b,s,r,q,k}(t)\ge0$ is instantaneous amplitude and $\phi_{b,s,r,q,k}(t)$ is phase. The primary poststimulus interval was $W=[50,250)$ ms.
+
+Let $\mathcal Q_{s,r,c}$ be the set of valid trials of category $c$ for participant $s$ and run $r$. Category-evoked complex fields were obtained by ensemble averaging,
+\begin{equation}
+E_{b,s,r,c,k}(t)=\frac{1}{|\mathcal Q_{s,r,c}|}
+\sum_{q\in\mathcal Q_{s,r,c}}z_{b,s,r,q,k}(t).
+\label{eq:categorymean}
+\end{equation}
+For normalization, alpha modal power was estimated from the underlying trial ensemble,
+\begin{equation}
+P_{\alpha,s,r,c,k}=\frac{1}{|\mathcal Q_{s,r,c}|\,|W|}
+\sum_{q\in\mathcal Q_{s,r,c}}\sum_{t\in W}|z_{\alpha,s,r,q,k}(t)|^2.
+\label{eq:power}
+\end{equation}
+
+Theta and alpha are both used only at the next step to identify category-independent evoked structure. At each time point, their $K=16$ category means are concatenated into a $2K=32$ feature vector,
+\begin{equation}
+\bm X_{s,r,c}(t)=
+\begin{bmatrix}
+\bm E_{\theta,s,r,c}(t)\\
+\bm E_{\alpha,s,r,c}(t)
+\end{bmatrix}
+\in\mathbb C^{32},
+\label{eq:concat}
+\end{equation}
+where $\bm E_{b,s,r,c}(t)=[E_{b,s,r,c,1}(t),\ldots,E_{b,s,r,c,16}(t)]^{\mathsf T}$. Stacking the vectors over $t\in W$ gives a time-by-feature matrix $X_{s,r,c}\in\mathbb C^{T_W\times32}$.
+
+A category-independent template for each participant and run was
+\begin{equation}
+G_{s,r}=\frac14\sum_{c\in\{F,O,L,X\}}X_{s,r,c}.
+\label{eq:common}
+\end{equation}
+Singular value decomposition (SVD), $G_{s,r}=U\Sigma V^\dagger$, was used to identify the dominant feature directions shared by all four categories. The first two right singular vectors were collected in $V_2$, and the complementary projector was
+\begin{equation}
+M=I-V_2V_2^\dagger.
+\label{eq:projector}
+\end{equation}
+The residualized category matrix was $X'_{s,r,c}=X_{s,r,c}M$. Importantly, $X'_{s,r,c}$ still contains 16 residual theta columns and 16 residual alpha columns. We therefore write it explicitly as
+\begin{equation}
+X'_{s,r,c}(t)=
+\begin{bmatrix}
+\bm R_{\theta,s,r,c}(t)\\
+\bm R_{\alpha,s,r,c}(t)
+\end{bmatrix},
+\label{eq:residualsplit}
+\end{equation}
+where $\bm R_{\alpha,s,r,c}(t)\in\mathbb C^{16}$ is simply the alpha block of the residualized matrix, not a separate fitted quantity. Only this residual alpha block is used for the distances below. Its $k$th coordinate is normalized by the corresponding alpha modal power,
+\begin{equation}
+Y_{\alpha,s,r,c}(k,t)=
+\frac{R_{\alpha,s,r,c,k}(t)}{\sqrt{P_{\alpha,s,r,c,k}+\varepsilon}},
+\qquad \varepsilon=10^{-30}.
+\label{eq:field}
+\end{equation}
+The small constant $\varepsilon$ prevents division by zero and is numerically negligible for nonzero modal power.
+
+The values $K=16$, theta 4--8 Hz, alpha 8--13 Hz, the 50--250 ms window, rank-2 common-subspace removal, power normalization, and the distance definitions below were inherited from the preceding representation-development stage and fixed before inspection of confirmation-cohort outcomes. Theta is included in Eqs.~\ref{eq:concat}--\ref{eq:residualsplit} only to estimate shared theta--alpha evoked feature directions; the final representational distances are computed from the normalized residual alpha field in Eq.~\ref{eq:field}. This distinction avoids treating theta as a component of the final alpha distance.
+
+\subsection{Exact radial--angular distance decomposition}
+For a given participant, run ensemble, and category, combine graph mode and time into one coordinate $m=(k,t)$ and write
+\begin{equation}
+Y_{c,m}=A_{c,m}e^{i\phi_{c,m}},
+\end{equation}
+where $A_{c,m}=|Y_{c,m}|$ and $\phi_{c,m}=\arg(Y_{c,m})$. For categories $c$ and $c'$, define the phase difference $\Delta\phi_m=\phi_{c,m}-\phi_{c',m}$.
+
+The full squared complex Euclidean distance is
+\begin{equation}
+\DFULL(c,c')=\sum_m|Y_{c,m}-Y_{c',m}|^2.
+\label{eq:dfull}
+\end{equation}
+It decomposes exactly into the amplitude-difference component
+\begin{equation}
+\DAMP(c,c')=\sum_m(A_{c,m}-A_{c',m})^2
+\label{eq:damp}
+\end{equation}
+and the amplitude-weighted angular component
+\begin{equation}
+\DAP(c,c')=\sum_m2A_{c,m}A_{c',m}\left[1-\cos(\Delta\phi_m)\right],
+\label{eq:dap}
+\end{equation}
+so that
+\begin{equation}
+\DFULL(c,c')=\DAMP(c,c')+\DAP(c,c').
+\label{eq:fullapamp}
+\end{equation}
+The labels FULL, AMP, and AP refer to Eqs.~\ref{eq:dfull}, \ref{eq:damp}, and \ref{eq:dap}; AP is not physiological phase-amplitude coupling. Conventional phase-amplitude coupling (PAC) is a statistical dependence measure, often across frequencies, and addresses a different question \citep{Kovach2018}.
+
+To determine which part of AP is truly phase specific, we further define four exact or diagnostic terms:
+\begin{align}
+D_{\mathrm{ENERGY}}(c,c')
+&=\sum_m\left(A_{c,m}^2+A_{c',m}^2\right),
+\label{eq:energy}\\
+D_{\mathrm{PRODUCT}}(c,c')
+&=\sum_m2A_{c,m}A_{c',m},
+\label{eq:product}\\
+\DINT(c,c')
+&=-\sum_m2A_{c,m}A_{c',m}\cos(\Delta\phi_m),
+\label{eq:interference}\\
+\DANG(c,c')
+&=\sum_m2\left[1-\cos(\Delta\phi_m)\right].
+\label{eq:angle}
+\end{align}
+Here ENERGY is the radial sum of squared amplitudes. PRODUCT is a co-activation term: it becomes large when both category responses have large amplitudes at the same coordinate, regardless of their phase difference. INTERFERENCE is the signed amplitude-weighted phase-dependent cross term, and ANGLE removes amplitude weighting entirely. For intuition, when two phases are aligned, $\cos(\Delta\phi_m)\approx1$ and INTERFERENCE is negative, thereby reducing the full distance; anti-aligned phases make the cross term positive and increase the full distance. ANGLE is therefore a phase-only angular dissimilarity diagnostic.
+
+The exact identities relevant for interpretation are
+\begin{align}
+\DAMP&=D_{\mathrm{ENERGY}}-D_{\mathrm{PRODUCT}},\\
+\DAP&=D_{\mathrm{PRODUCT}}+\DINT,
+\end{align}
+and, most directly,
+\begin{align}
+\DFULL(c,c')
+&=D_{\mathrm{ENERGY}}(c,c')+\DINT(c,c')\\
+&=\sum_m\Big[A_{c,m}^2+A_{c',m}^2
+-2A_{c,m}A_{c',m}\cos(\Delta\phi_m)\Big].
+\label{eq:fullenergyint}
+\end{align}
+Thus INTERFERENCE is explicitly present in the full distance, whereas ANGLE is an auxiliary amplitude-free test of angular organization. INTERFERENCE is a signed algebraic contribution and is not claimed to be a metric by itself.
+
+\subsection{Construction of the six-distance RDM and cross-run reliability}
+Each participant had five analyzable runs. A reliability comparison requires two non-overlapping run ensembles. From five runs there are 15 unique ways to choose two runs for ensemble $A_p$ and two different runs for ensemble $B_p$, leaving the fifth run unused; $p=1,\ldots,15$ indexes these partitions.
+
+For participant $s$, partition $p$, and category $c$, the complex field for ensemble $A_p$ is the mean of the two run-specific fields,
+\begin{equation}
+\overline{Y}_{s,A_p,c}(k,t)=\frac{1}{2}\sum_{r\in A_p}Y_{\alpha,s,r,c}(k,t),
+\label{eq:halfmean}
+\end{equation}
+with an analogous definition for $\overline{Y}_{s,B_p,c}$. For a distance definition $j$, such as FULL or ANGLE, Eqs.~\ref{eq:dfull}--\ref{eq:angle} are applied to each ensemble separately.
+
+The six category-pair distances in Eq.~\ref{eq:sixpairs} are then collected into an RDM vector. For ensemble $A_p$,
+\begin{equation}
+\bm d^{(j)}_{s,A_p}=\begin{bmatrix}
+D^{(j)}_{s,A_p}(F,O)\\
+D^{(j)}_{s,A_p}(F,L)\\
+D^{(j)}_{s,A_p}(F,X)\\
+D^{(j)}_{s,A_p}(O,L)\\
+D^{(j)}_{s,A_p}(O,X)\\
+D^{(j)}_{s,A_p}(L,X)
+\end{bmatrix},
+\qquad
+\bm d^{(j)}_{s,B_p}\ \text{defined analogously}.
+\label{eq:rdmvector}
+\end{equation}
+These vectors contain distances, not correlations. The cross-run reliability for that partition is the Spearman rank correlation
+\begin{equation}
+r^{(j)}_{s,p}=\rho_S\!\left(\bm d^{(j)}_{s,A_p},\bm d^{(j)}_{s,B_p}\right),
+\label{eq:partitionr}
+\end{equation}
+where $\rho_S$ is the Pearson correlation of the rank-transformed six distances. Spearman correlation was chosen as the primary association measure because the scientific endpoint is preservation of representational ordering, not equality of distance scale.
+
+The 15 partition-level correlations overlap in their constituent runs and therefore are not independent observations. They are deterministically averaged into one participant-level reliability score,
+\begin{equation}
+R_{j,s}=\frac{1}{15}\sum_{p=1}^{15}r^{(j)}_{s,p}.
+\label{eq:Rparticipant}
+\end{equation}
+Population inference is performed across the $N=30$ participant scores, not across the 15 partitions. The cohort mean is
+\begin{equation}
+\bar R_j=\frac{1}{N}\sum_{s=1}^{N}R_{j,s}.
+\label{eq:Rgroup}
+\end{equation}
+Accordingly, $\bar R_{\mathrm{FULL}}$, $\bar R_{\mathrm{AP}}$, and $\bar R_{\mathrm{AMP}}$ summarize the average participant-level reproducibility of the corresponding six-distance RDMs. Because each RDM contains only six entries, a single partition correlation is coarse; the participant is the inferential unit, and no claim is made that all six category pairs contribute equally.
+
+\subsection{Pre-specification, parameter rationale, and population inference}
+In this article, \emph{pre-specified} means fixed before inspection of the neural outcomes to which the rule was applied. The representation parameters in Section~2.3 and the primary reliability analysis in Section~2.5 were fixed before confirmation-cohort outcomes were examined. They were not re-optimized on the $N=30$ confirmation cohort. The second cohort used the same representation unchanged.
+
+The primary population null was $H_0:\bar R_{\mathrm{FULL}}\le0$. A practical reliability floor of $\bar R_{\mathrm{FULL}}\ge0.50$ was also specified so that statistical significance alone would not define success. The hierarchical angular-versus-amplitude criterion required
+\begin{equation}
+\overline{R_{\mathrm{AP}}-R_{\mathrm{AMP}}}\ge0.10,
+\qquad p_{\Delta}<0.025,
+\qquad
+\overline{R_{\mathrm{FULL}}-R_{\mathrm{AP}}}\le0.10.
+\label{eq:criterion}
+\end{equation}
+These were operational decision thresholds fixed before outcome inspection: the 0.10 AP--AMP margin required a nontrivial reliability advantage; the one-sided $p<0.025$ threshold reflected the directional pre-specified hypothesis and conservative decision rule; and the FULL--AP ceiling required the AP component to remain close to the reliability of the full complex geometry. The thresholds are not universal neuroscience constants and are not re-estimated from the present data.
+
+Participant-level one-sided random sign flips with 100,000 realizations were used for the primary FULL test and the pre-specified AP--AMP contrast. When none of the random sign assignments equaled or exceeded the observed statistic, the result is reported as $p<10^{-5}$ rather than $p=0$. Descriptive 95\% confidence intervals (CIs) for cohort means and contrasts were obtained by participant bootstrap with 100,000 resamples (seed 20260912). The bootstrap CIs describe precision; the pre-specified decision rules were based on the sign-flip tests and effect thresholds.
+
+For the phase-organization analyses, observed INTERFERENCE and ANGLE reliabilities were compared with amplitude-preserving phase-label nulls. The null procedure generated 999 aligned cohort-level randomizations. Plus-one empirical $p$ values were used for the cohort-level null comparison, and participant-level observed-minus-null effects were additionally tested with 100,000 paired one-sided sign flips. The criterion required positive observed-minus-null effects with $p<0.025$ in both cohorts.
+
+\subsection{Robustness and negative-control analyses}
+Coordinate dependence was assessed in three ways. First, the original graph Fourier transform (GFT) coordinates were replaced by 49 deterministic random orthogonal rotations of the same 16-dimensional subspace (random seed 2026091202). Second, out-of-bag principal component analysis (OOB-PCA) was used: for each 2-vs-2 run partition, the fifth run that was excluded from both reliability halves was used to fit a principal component analysis (PCA) basis, which was then applied unchanged to both compared halves. This prevents either test half from determining its own PCA coordinates. Third, the same rank-16 graph-spectral subspace was reconstructed into the original 102 sensor coordinates; this changes coordinates without adding dimensions and is termed \emph{rank-matched sensor reconstruction}. These analyses test coordinate dependence within the same low-dimensional signal subspace and do not constitute source-space validation.
+
+Temporal specificity was tested by repeating the full procedure in a far-prestimulus window, -450 to -250 ms. Association-metric robustness was evaluated with Pearson product-moment correlation and Kendall's $\tau_b$ in addition to the primary Spearman correlation. Pearson correlation measures linear association of the six numerical distances. Kendall's $\tau_b$ measures ordinal agreement by comparing the numbers of concordant and discordant pairs and corrects for tied ranks; like Spearman correlation, it ranges from -1 to 1. Agreement of the AP--AMP result across Spearman, Pearson, and Kendall $\tau_b$ therefore tests whether the conclusion depends on one particular similarity statistic.
+
+A first amplitude-preserving phase randomization kept every category amplitude fixed while permuting the four category phases at each graph-mode/time coordinate independently between run halves. Because $D_{\mathrm{AP}}=D_{\mathrm{PRODUCT}}+D_{\mathrm{INTERFERENCE}}$, this manipulation tests the compound AP quantity but cannot by itself isolate phase organization from the amplitude-product scaffold.
+
+The phase-specific null therefore tested INTERFERENCE and ANGLE directly. At every complex coordinate, amplitudes remained assigned to their original categories while only the four category phase labels were permuted, independently between the two compared run halves. The procedure preserves all amplitude values and the set of four phase values at each coordinate while destroying the mapping between phase and visual category. Numerical audits verified amplitude preservation to $2.22\times10^{-16}$ and exact preservation of each coordinate-wise phase multiset.
+
+\subsection{Exploratory ensemble-size analysis}
+To determine whether the confirmed object is a single-trial or ensemble-level representation, FULL reliability was estimated as a function of the number of repeated trials used to form each category field. A descriptive saturating fit summarized the trend by asymptotic reliability $R_\infty$ and a trial-count scale $\tau_n$. The parameter $\tau_n$ is measured in repeated trials, not milliseconds; it is neither a neuronal time constant nor a prescriptive sample-size threshold.
+
+\section{Results}
+\subsection{The full complex category geometry is reproducible}
+The prospective confirmation cohort comprised 30 participants selected by technical eligibility without using neural reliability outcomes. Mean full-complex cross-run RDM reliability was
+\begin{equation}
+\bar\RFULL=0.78514,
+\end{equation}
+with 95\% CI [0.716,0.839], median 0.840, and 30/30 participants positive. None of 100,000 random sign assignments equaled or exceeded the observed population mean ($p<10^{-5}$), and the pre-specified practical floor of 0.50 was exceeded. In practical terms, the relative ordering of the six category-pair distances was strongly preserved across independent run ensembles within participants.
+
+Within the same exact complex distance, mean AP reliability was 0.74844 and mean AMP reliability was 0.60622. The participant-level AP--AMP difference was 0.14222 (95\% CI [0.081,0.210], one-sided sign-flip $p=7\times10^{-5}$), exceeding the pre-specified 0.10 margin. FULL--AP was 0.03670, below the pre-specified 0.10 ceiling. Thus the amplitude-weighted angular component preserved most of the repeatable structure of the full complex geometry, whereas amplitude differences alone were less reproducible.
+
+\subsection{The same component ordering generalizes to a second non-overlapping cohort}
+The unchanged representation was applied to a second non-overlapping $N=30$ cohort from the same COGITATE resource. Mean FULL, AP, and AMP reliabilities were 0.67975 (95\% CI [0.603,0.749]), 0.65371 (95\% CI [0.575,0.725]), and 0.48470 (95\% CI [0.375,0.589]), respectively. The AP--AMP contrast was 0.16902 (95\% CI [0.116,0.225]), and FULL--AP was 0.02603. The same ordering therefore transferred to new participants without representation retuning, while remaining a within-resource generalization rather than an independent dataset replication.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.90\linewidth]{figures/fig2_primary_two_cohorts.pdf}
+\caption{\textbf{Cross-run reliability of the full complex distance and its two exact components.} FULL denotes reliability of the full complex RDM, AP denotes reliability of the amplitude-weighted angular component, and AMP denotes reliability of the amplitude-difference component. Bars are cohort means of participant-level $R$ values; error bars are descriptive 95\% participant-bootstrap CIs from 100,000 resamples. The dashed line at $R=0.50$ is the pre-specified practical floor for the primary FULL endpoint only. The confirmation cohort shows FULL $\approx$ AP $>$ AMP, and the same ordering appears in the non-overlapping within-resource generalization cohort. The closeness of AP to FULL indicates that the amplitude-weighted angular term preserves much of the reproducible ordering of category distances; it does not imply that the numerical reliabilities themselves add according to the distance identity.}
+\label{fig:primary}
+\end{figure}
+
+Figure~\ref{fig:primary} makes two points visible. First, FULL reliability is high in both cohorts, showing that the complex category geometry is not specific to the original participants. Second, AP lies close to FULL while AMP is consistently lower. Because $R$ is a correlation of RDM orderings rather than a distance, $R_{\mathrm{FULL}}$ is not equal to $R_{\mathrm{AP}}+R_{\mathrm{AMP}}$; the figure compares how reproducibly each distance definition preserves category relations.
+
+\begin{table}[ht]
+\centering
+\caption{Principal cross-run reliability outcomes. The second cohort is a within-resource strict-template generalization, not an independent experiment.}
+\label{tab:primary}
+\begin{tabular}{lcc}
+\toprule
+Endpoint & Confirmation cohort & Generalization cohort\\
+\midrule
+$N$ & 30 & 30\\
+FULL & 0.785 & 0.680\\
+AP & 0.748 & 0.654\\
+AMP & 0.606 & 0.485\\
+AP--AMP & 0.142 & 0.169\\
+FULL--AP & 0.037 & 0.026\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The AP advantage is robust to coordinate system, prestimulus activity, and association metric}
+In the confirmation cohort, AP--AMP remained positive under out-of-bag principal component analysis (OOB-PCA; 0.1020, $p=2.1\times10^{-4}$) and rank-matched sensor reconstruction (0.1434, $p=1.1\times10^{-4}$). In the generalization cohort, the corresponding effects were 0.1658 and 0.1163 (both $p\approx10^{-5}$). Across all 49 random orthogonal rotations of the rank-16 subspace, AP--AMP was positive at the population level in both cohorts for every rotation; median effects were 0.1491 and 0.1663.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/fig3_basis_robustness.pdf}
+\caption{\textbf{Coordinate-system robustness of the AP--AMP reliability difference.} GFT is the original graph Fourier transform representation. OOB-PCA is out-of-bag principal component analysis: for each run partition, PCA is fitted only on the unused fifth run and then applied unchanged to both compared halves. Rank-matched sensor reconstruction maps the same 16-dimensional subspace back to 102 sensor coordinates without adding dimensions. The plotted quantity is the cohort mean of $R_{\mathrm{AP}}-R_{\mathrm{AMP}}$; positive values mean that the amplitude-weighted angular RDM is more reproducible than the amplitude-difference RDM. The contrast remains positive in both cohorts under all three coordinate systems.}
+\label{fig:basis}
+\end{figure}
+
+Figure~\ref{fig:basis} shows that the AP advantage is not created by one specific graph eigenbasis. OOB-PCA is especially informative because neither of the two run ensembles being compared determines the PCA basis. The rank-matched sensor reconstruction further shows that expressing the same low-dimensional signal in sensor coordinates does not remove the effect. These controls establish coordinate robustness within the tested 16-dimensional subspace; they do not establish anatomical source-space generality.
+
+The far-prestimulus FULL reliability was -0.0430 in the confirmation cohort and 0.0019 in the generalization cohort, compared with poststimulus values 0.7851 and 0.6797; paired post-minus-pre sign-flip tests yielded $p\approx10^{-5}$ in both cohorts. AP--AMP also remained positive with Pearson correlation (0.1321 and 0.1631) and Kendall $\tau_b$ (0.1298 and 0.1330), with participant-level one-sided $p<0.001$. Thus the effect is not explained by a stable prestimulus category geometry or by the particular choice of Spearman rank correlation.
+
+\subsection{Exact component analysis separates a radial scaffold from phase-dependent structure}
+A first phase randomization of the compound AP term did not reduce AP reliability: randomized AP was 0.7672 and 0.6995, compared with observed 0.7484 and 0.6537. The result is informative because AP contains both the amplitude-product term and the phase-dependent INTERFERENCE term. High AP reliability alone therefore cannot be interpreted as phase specificity.
+
+The exact component decomposition resolved this ambiguity. ENERGY reliability was 0.7902 and 0.7186 across the two cohorts; PRODUCT reliability was 0.7698 and 0.7100; INTERFERENCE reliability was 0.7430 and 0.5882; and amplitude-free ANGLE reliability was 0.6838 and 0.4955. INTERFERENCE-to-FULL cross-run congruence was 0.7458 and 0.6177. In the generalization cohort, PRODUCT was more reliable than AP by 0.0563 ($p=0.0077$).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.90\linewidth]{figures/fig4_exact_components.pdf}
+\caption{\textbf{Reliability of the radial and angular terms defined in Eqs.~\ref{eq:energy}--\ref{eq:angle}.} ENERGY is the sum of squared amplitudes, PRODUCT is the multiplicative amplitude scaffold $2AA'$, INTERFERENCE is the signed amplitude-weighted phase cross term $-2AA'\cos(\Delta\phi)$, and ANGLE is the amplitude-free phase dissimilarity $2[1-\cos(\Delta\phi)]$. Bars are mean participant reliabilities and error bars are descriptive 95\% bootstrap CIs. PRODUCT is strongly reproducible in both cohorts, demonstrating that amplitude structure is a major contributor. INTERFERENCE and ANGLE are also reproducible, showing that the observed geometry cannot be reduced to amplitude differences alone.}
+\label{fig:components}
+\end{figure}
+
+Figure~\ref{fig:components} supports a mixed rather than competitive interpretation of amplitude and phase. The high PRODUCT values show that the radial amplitude scaffold is itself stable. At the same time, INTERFERENCE and ANGLE remain substantially above zero. The ANGLE result is particularly important because it contains no amplitude weights; its reproducibility therefore motivates a direct test of whether the angular ordering is specific to visual category labels.
+
+\subsection{Category-specific angular organization exceeds an amplitude-preserving phase null}
+The phase-label null preserved every amplitude and the coordinate-wise set of phase values while destroying only the mapping between phase and category. For INTERFERENCE, observed reliability was 0.7430 versus null mean 0.5310 in the confirmation cohort (observed-minus-null 0.2120; 95\% CI [0.1622,0.2618]; $p<10^{-5}$) and 0.5882 versus 0.4832 in the generalization cohort (effect 0.1049; 95\% CI [0.0239,0.1877]; $p=0.0111$). Participant-level effects were positive in 93\% and 70\% of participants, respectively.
+
+The amplitude-free ANGLE result was stronger. Observed ANGLE reliability was 0.6838 versus null mean -0.0012 in the confirmation cohort (effect 0.6850; 95\% CI [0.5970,0.7618]; $p<10^{-5}$) and 0.4955 versus -0.0010 in the generalization cohort (effect 0.4965; 95\% CI [0.3983,0.5902]; $p<10^{-5}$). Effects were positive in 29/30 participants in each cohort. All four component-by-cohort effects also exceeded all 999 aligned cohort-level null realizations (minimum plus-one empirical $p=0.001$).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.90\linewidth]{figures/fig5_phase_null.pdf}
+\caption{\textbf{Observed angular structure versus the amplitude-preserving category-phase null.} ``Confirmation'' denotes the prospective $N=30$ cohort; ``Generalization'' denotes the second non-overlapping $N=30$ cohort from the same resource. INTERFERENCE is the amplitude-weighted phase cross term and ANGLE is the amplitude-free phase dissimilarity. For each quantity, the solid bar is the observed mean participant reliability and the hatched bar is the mean reliability after category phase labels are randomized while amplitudes remain fixed. The INTERFERENCE null remains positive because its $AA'$ weights preserve amplitude-product structure, yet observed INTERFERENCE is still significantly larger. By contrast, the ANGLE null is approximately zero in both cohorts, whereas observed ANGLE is 0.684 and 0.495. This isolates category-specific angular organization from amplitude structure.}
+\label{fig:phase-null}
+\end{figure}
+
+Figure~\ref{fig:phase-null} is the decisive phase-specific control. The nonzero INTERFERENCE null demonstrates why amplitude weighting must be considered explicitly: even randomized phases are multiplied by a stable amplitude scaffold. ANGLE removes that scaffold, and its collapse to approximately zero under phase-label randomization shows that the observed angular reliability depends on the category assignment of phase, not on amplitude preservation. The same qualitative result in the second cohort shows that this phase-category organization generalizes to new participants within the same data resource.
+
+\subsection{The reproducible geometry is ensemble-level}
+Mean FULL reliability increased with the number of repeated trials used to estimate each category field: approximately 0.008 (1 trial), 0.021 (2), 0.075 (4), 0.207 (8), 0.404 (16), 0.624 (32), and 0.757 (64). A descriptive saturating fit yielded $R_\infty=0.847$ and $\tau_n=26.36$ trials.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.86\linewidth]{figures/fig6_ensemble_convergence.pdf}
+\caption{\textbf{Ensemble-size dependence of FULL reliability.} Points show mean FULL RDM reliability as the number of repeated trials contributing to each category field increases. The dashed curve is a descriptive saturation fit with asymptotic reliability $R_\infty=0.847$ and descriptive convergence scale $\tau_n=26.36$ trials. The fit is descriptive, not prescriptive: $\tau_n$ is neither a neuronal time constant nor a recommended minimum trial requirement. The result indicates that the present geometry is an ensemble-level representation rather than a validated single-trial invariant.}
+\label{fig:convergence}
+\end{figure}
+
+The steep increase between 8 and 32 trials indicates that averaging repeated category responses materially stabilizes the geometry. Consequently, the current result should be interpreted as repeatable ensemble structure, not as evidence for reliable single-trial decoding.
+
+\section{Discussion}
+\subsection{Principal finding: visual representations have a reproducible mixed radial--angular geometry}
+The principal result is that repeatable visual-category structure in the tested early-alpha MEG representation is jointly carried by radial amplitude organization and angular phase relations. The amplitude-product scaffold is highly reproducible, but category-specific angular organization contributes additional repeatable structure that is not explained by preserving amplitude alone. The strongest phase-specific evidence is the amplitude-free ANGLE geometry: it is reproducible in both cohorts and falls to approximately zero when category phase labels are randomized while all amplitudes remain unchanged.
+
+The exact decomposition is important because the original AP term is intrinsically mixed. AP contains both $2AA'$ and $-2AA'\cos\Delta\phi$. A high AP reliability therefore cannot by itself establish a phase-specific effect. Separating PRODUCT, INTERFERENCE, and ANGLE shows that both radial and angular organization are stable properties of the representation. This replaces a simplistic amplitude-versus-phase competition with a more precise geometric statement: amplitude determines a reproducible radial scaffold, while phase contributes reproducible category-specific angular relations within the same complex field.
+
+\subsection{Relation to existing neuroscience of oscillatory phase}
+The finding complements established evidence that oscillatory phase influences perception and can carry stimulus information. Prestimulus phase has been associated with visual detection and awareness \citep{Busch2009,Mathewson2009}; alpha rhythms have been interpreted in terms of cyclic excitability and inhibitory gating \citep{VanRullen2016,JensenMazaheri2010}; and phase synchronization has been proposed as one route to distributed functional coordination \citep{Palva2018}. These literatures motivate phase as a biologically meaningful variable but do not determine how phase should enter an imaging representation.
+
+The closest representational precedent is Reddy et al. \citep{Reddy2021}, who derived separate phase and power RDMs from MEG time-frequency responses. The present ANGLE quantity differs conceptually and statistically. It is derived from the angular part of the same complex Euclidean geometry used for FULL rather than from a separately chosen phase feature space, and its category specificity is tested against a null that preserves the complete amplitude field and the coordinate-wise phase multiset while randomizing only category-phase assignment. The new knowledge is therefore that category-specific angular relations form a repeatable component of a unified complex representational geometry beyond amplitude structure.
+
+The result also supplies a bridge between phase-sensitive physiology and representational analysis. Phase effects reported in perception studies are usually quantified relative to detection, excitability, synchronization, or timing. Here, phase is linked instead to the geometry among neural responses to different visual categories. This suggests that phase-sensitive neural organization can be studied not only as a scalar modulation of excitability but also as a structured relational variable that changes how stimulus classes are positioned relative to one another in a complex-valued neural state space.
+
+\subsection{Implications for neuroimaging methodology}
+Many MEG/electroencephalography pipelines summarize oscillatory responses by amplitude, power, or power-derived multivariate features. The present data show that this reduction can discard repeatable category structure. A complex-valued representation permits two complementary questions: how large the response is at each coordinate and how its angular orientation differs across conditions. Because both radial and angular components are reproducible, power-only analysis is an incomplete description of the tested geometry.
+
+\begin{center}
+\begin{minipage}{0.93\linewidth}
+\hrule\vspace{0.6em}
+\textbf{Box 1. What this means for imaging and clinical neurophysiology.}\par
+Amplitude is the radial coordinate of a complex neural response, while phase contributes through angular relations. Standard power analysis keeps the radial coordinate but discards angular organization. A useful analogy is a map: difference in altitude is informative, but two locations cannot be characterized fully without their direction relative to one another. In the present MEG data, both the amplitude-product scaffold and angular organization of early-alpha category responses were repeatable. Most importantly, amplitude-free ANGLE reliability fell to approximately zero when category phase labels were randomized while every amplitude was preserved. For imaging and clinical neurophysiology, the immediate implication is methodological rather than diagnostic: candidate oscillatory biomarkers should benchmark complex-valued representations against amplitude- or power-only baselines. The present effect is ensemble-level and should not be treated as a single-trial decoder or clinical biomarker. Source-space validation, patient cohorts, longitudinal test--retest studies, and independent-dataset replication are required before translation.
+\vspace{0.6em}\hrule
+\end{minipage}
+\end{center}
+
+This matters for reliability-focused imaging because reproducibility is a prerequisite for longitudinal measures, interventional readouts, or biomarkers. The present study identifies a candidate measurement principle: retain complex information long enough to determine empirically whether angular organization contributes repeatable structure. A future disease, pharmacological, or stimulation study can then ask separately whether pathology or intervention changes the radial scaffold, the angular organization, or both.
+
+\subsection{Relevance for neurologists and clinical neurophysiology}
+The present study was performed in a visual research paradigm and does not validate a diagnostic marker. Its clinical value is therefore a measurement constraint: electrophysiological biomarkers should not be assumed to reside entirely in spectral power. This is relevant because clinical EEG and MEG already use oscillatory measures to characterize neurological disease. Quantitative EEG slowing and spectral-power changes have been associated with cognitive impairment and progression in Parkinson disease \citep{Geraedts2018}; network-level EEG/MEG measures are being developed for diagnosis, prognosis, stratification, and trial outcomes in neurodegenerative disease \citep{McMackin2019}; and disorders of consciousness are evaluated with combinations of spectral, connectivity, phase-sensitive, and evoked EEG measures \citep{Bai2021}. In Parkinson disease, clinically oriented biomarker work on deep-brain recordings likewise combines beta power with synchrony, phase-amplitude coupling, and burst dynamics for treatment optimization and adaptive stimulation \citep{Radcliffe2023}.
+
+The radial--angular framework offers a way to organize such features without presuming that one type must replace another. A power-dominant disease effect would be expected to alter the radial scaffold; a timing or coordination effect could alter angular organization; and some pathologies may alter both. The practical advantage is that these hypotheses can be tested within one complex representation by comparing FULL, radial, and angular geometries under the same reliability metric. For clinicians, the most relevant requirement is test--retest stability: a feature that discriminates groups but is not reproducible within patients is a weak candidate for longitudinal monitoring. The present study therefore suggests a validation sequence for future clinical work: establish within-patient reliability, compare complex-valued and power-only models, use phase-preserving or phase-randomized controls, then test diagnostic or prognostic value in independent cohorts.
+
+This framework may be especially useful for averaged or repeated-trial paradigms, where stable condition-level geometry can be estimated. The current single-trial analysis shows that reliability is minimal at one trial, so the method is not presently suitable for real-time bedside classification or closed-loop control. Its near-term clinical role is instead to guide feature construction and validation for research biomarkers, including studies of neurodegeneration, movement disorders, and impaired consciousness, where oscillatory magnitude and timing are both biologically plausible sources of information.
+
+\subsection{Coordinate-system implications}
+Graph-spectral coordinates supplied a compact and auditable low-dimensional representation, but the alternative-coordinate analyses show that the principal AP--AMP contrast is not unique to one graph eigenbasis. The effect remains positive with OOB-PCA, rank-matched sensor reconstruction, and every tested random orthogonal rotation of the 16-dimensional subspace. The supported object is therefore best viewed as radial--angular organization within a retained complex signal subspace, rather than as a special property of one graph Fourier basis.
+
+This distinction is useful for future source-space work. If the same radial--angular organization appears in anatomically defined cortical parcels, the geometry could be linked to known visual pathways and network anatomy. If it does not, the present result would remain a robust sensor-subspace representation but its anatomical interpretation would have to be restricted accordingly.
+
+\subsection{Novelty and scientific contribution}
+The principal novelty is the empirical identification of a reproducible \emph{mixed radial--angular} representational geometry in human MEG. The study establishes that a full complex visual-category geometry is highly repeatable across run ensembles and transfers without retuning to a second non-overlapping participant cohort from the same data resource. Within that geometry, the amplitude-weighted angular component preserves substantially more cross-run structure than amplitude differences alone.
+
+A second contribution is the explicit separation of the radial scaffold from phase-specific organization. PRODUCT is highly reproducible in both cohorts, showing that amplitude structure is not a nuisance to be removed but a stable component of the representation. At the same time, INTERFERENCE and amplitude-free ANGLE are also reproducible. This demonstrates that the complex geometry contains complementary radial and angular information rather than a single dominant code.
+
+The strongest new evidence is the amplitude-preserving category-phase null. Because amplitudes remain fixed, the observed-minus-null ANGLE effects of 0.685 and 0.497 directly isolate category-specific angular organization; 29 of 30 participants show a positive effect in each cohort. The parallel INTERFERENCE effects show that phase organization remains detectable when weighted by the physiological magnitude of the corresponding complex coordinates. Together, these results provide a falsifiable measurement result with immediate methodological use: complex oscillatory representations can contain repeatable category information that is absent from amplitude-only distances and should therefore be tested explicitly in MEG/electroencephalography representation studies. Because literature searches cannot establish the absolute absence of earlier related analyses, the novelty claim is deliberately framed as this specific combination of exact decomposition, prospective confirmation, strict-template generalization, coordinate robustness, and amplitude-preserving phase-null falsification rather than as an absolute ``first-ever'' phase result.
+
+\subsection{Limitations}
+Several limitations constrain generalization. First, the two $N=30$ cohorts are non-overlapping participant sets from the same COGITATE resource. The second cohort is a strict-template within-resource generalization, not an independent experiment. A fully independent dataset remains necessary. The parent resource was acquired at two centers, Birmingham and Beijing/Peking; acquisition site was not modeled as a separate fixed or random effect in the present analysis, so future work should include site-stratified or leave-one-site-out validation where metadata and sample sizes permit.
+
+Second, four coarse categories produce only six RDM distances. Participant-level inference prevents run-partition pseudoreplication, and Pearson/Kendall controls reduce dependence on one rank metric, but a six-distance geometry remains low-dimensional. The archived confirmatory outputs retain participant-level reliability rather than the full pair-specific splitwise distance vectors needed for a valid post hoc item-level decomposition. Consequently, no claim is made that all six category pairs contribute equally. Future analyses should retain pair-level splitwise outputs and test leave-one-pair-out sensitivity in richer stimulus sets.
+
+Third, the effect is demonstrated in a sensor-derived 16-dimensional subspace. Rank-matched sensor reconstruction and alternative coordinate systems establish robustness within that subspace, but they do not establish full-rank raw-sensor or anatomically localized source-space generality. Source reconstruction with predefined cortical parcels is therefore a priority.
+
+Fourth, the primary object is stimulus locked, early (50--250 ms), alpha-band, and ensemble averaged. The analysis does not establish persistence across time, frequency-general invariance, or a single-trial code. Fifth, the phase-label null is a statistical manipulation of a derived representation, not a physical perturbation of neural phase; it therefore does not establish causality. Sixth, although the parent dataset was designed to study conscious visual perception, the present analysis does not implement a validated seen-versus-unseen contrast for this radial--angular geometry. The result concerns visual category representation rather than consciousness specificity.
+
+\subsection{SGIT context and future research}
+Spectral-Geometric Integration Theory (SGIT) is an emerging research framework that treats neural signals as structured geometric objects after spectral and graph-based transformation. Its central methodological idea is to distinguish local magnitude information from relational organization: first identify reproducible geometry among neural states or conditions, then test how that geometry changes with time, perception, awareness, and perturbation. SGIT is therefore used here as a programme for generating progressively stronger falsifiable tests, not as an assumed mechanism of consciousness.
+
+The present article provides a concrete empirical anchor for that programme. It shows that, in one well-defined early-alpha MEG representation, the reproducible object is mixed radial--angular geometry. This result suggests several next tests. Equal-energy/different-phase stimuli can ask whether perceptual organization can be changed while radial spectral magnitude is held fixed. A matched seen-versus-unseen design can ask whether radial or angular geometry changes with conscious access. Anatomically defined source-space parcels can test whether the same geometry maps to interpretable cortical systems. Richer object sets and naturalistic stimuli can replace the six-distance RDM with a denser representational manifold. Finally, transcranial magnetic stimulation combined with electroencephalography or intracranial stimulation can test whether experimentally changing network timing alters the angular component causally.
+
+This sequence keeps the logic explicit: establish source-space and independent-dataset generality first, then test perception and awareness, and only after those steps evaluate causal interpretations of distributed phase organization.
+
+\section{Conclusion}
+Human MEG visual-category responses contain a reproducible mixed radial--angular geometry. The full early-alpha complex RDM is strongly repeatable across run ensembles, and its amplitude-weighted angular component is more reliable than amplitude differences alone. The same ordering transfers without retuning to a second non-overlapping cohort within the same public resource. Exact decomposition shows that a strong amplitude-product scaffold coexists with reproducible phase-dependent INTERFERENCE and amplitude-free ANGLE structure. Most importantly, category-specific ANGLE and INTERFERENCE exceed amplitude-preserving phase-label nulls in both cohorts. The resulting neuroscience constraint is specific: stable visual-category geometry is not captured by local amplitude structure alone; relational phase organization contributes independently to repeatable complex-valued representation.
+
+\section*{Data and Code Availability}
+The COGITATE MEG/electroencephalography source data are publicly archived by the Max Planck Society \citep{Liu2026}. The original-format archive has digital object identifier (DOI) 10.17617/1.WQA3-WK71 and the BIDS-formatted archive has DOI 10.17617/1.nzwp-7j89. The complete analysis repository supporting this article will be released publicly on GitHub at \texttt{[GITHUB-URL]} and archived as a versioned Zenodo software record with DOI \texttt{[ZENODO-DOI]}. The release contains analysis code, pre-specified protocol snapshots, compact numerical outputs, numerical self-tests, figure-generation code, and SHA-256 checksums. The large public COGITATE neuroimaging dataset is not redistributed; the repository documents how to obtain it from the original archives and how to re-run the analyses from the public/derived inputs. The Zenodo DOI and GitHub release URL will be inserted into the final submission immediately after public release and before Editorial Manager submission.
+
+\section*{Author Contributions}
+M.S.: Conceptualization; Methodology; Formal analysis; Investigation; Software; Validation; Visualization; Writing--original draft; Writing--review \& editing; Project administration.
+
+\section*{Funding}
+This work was supported by the European Union project Robotics and Advanced Industrial Production (No. CZ.02.01.01/00/22\_008/0004590) and by the Slovak Grant Agency VEGA (No. 1/0779/25).
+
+\section*{Declaration of Competing Interests}
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Acknowledgements}
+The author thanks the COGITATE Consortium, the study participants, and the teams that released the MEG/electroencephalography data and preprocessing resources.
+
+\section*{Declaration of Generative Artificial Intelligence (AI) and AI-Assisted Technologies}
+During preparation of this manuscript, the author used OpenAI ChatGPT as an AI-assisted writing and document-preparation tool for drafting, restructuring, English-language editing, literature organization, consistency checking, LaTeX preparation, and assembly of manuscript materials from archived numerical results. All scientific decisions, interpretation of results, verification of numerical values and references, and approval of the final manuscript were performed by the author, who takes full responsibility for the article.
+
+\begin{thebibliography}{99}
+\bibitem[Busch et~al.(2009)]{Busch2009} Busch, N.~A., Dubois, J., \& VanRullen, R. (2009). The phase of ongoing EEG oscillations predicts visual perception. \emph{Journal of Neuroscience}, 29(24), 7869--7876. doi:10.1523/JNEUROSCI.0113-09.2009.
+\bibitem[Cichy et~al.(2014)]{Cichy2014} Cichy, R.~M., Pantazis, D., \& Oliva, A. (2014). Resolving human object recognition in space and time. \emph{Nature Neuroscience}, 17, 455--462. doi:10.1038/nn.3635.
+\bibitem[COGITATE Consortium et~al.(2025)]{Cogitate2025} COGITATE Consortium, Ferrante, O., Gorska-Klimowska, U., Henin, S., Hirschhorn, R., Khalaf, A., Lepauvre, A., Liu, L., Richter, D., Vidal, Y., et al. (2025). Adversarial testing of global neuronal workspace and integrated information theories of consciousness. \emph{Nature}, 642(8066), 133--142. doi:10.1038/s41586-025-08888-1.
+\bibitem[Huang et~al.(2018)]{Huang2018} Huang, W., Bolton, T.~A.~W., Medaglia, J.~D., Bassett, D.~S., Ribeiro, A., \& Van De Ville, D. (2018). A graph signal processing perspective on functional brain imaging. \emph{Proceedings of the IEEE}, 106(5), 868--885. doi:10.1109/JPROC.2018.2798928.
+\bibitem[Jensen and Mazaheri(2010)]{JensenMazaheri2010} Jensen, O., \& Mazaheri, A. (2010). Shaping functional architecture by oscillatory alpha activity: Gating by inhibition. \emph{Frontiers in Human Neuroscience}, 4, 186. doi:10.3389/fnhum.2010.00186.
+\bibitem[Kovach et~al.(2018)]{Kovach2018} Kovach, C.~K., Oya, H., \& Kawasaki, H. (2018). The bispectrum and its relationship to phase-amplitude coupling. \emph{NeuroImage}, 173, 518--539. doi:10.1016/j.neuroimage.2018.02.033.
+\bibitem[Kriegeskorte et~al.(2008)]{Kriegeskorte2008} Kriegeskorte, N., Mur, M., \& Bandettini, P.~A. (2008). Representational similarity analysis---connecting the branches of systems neuroscience. \emph{Frontiers in Systems Neuroscience}, 2, 4. doi:10.3389/neuro.06.004.2008.
+\bibitem[Kriegeskorte and Kievit(2013)]{KriegeskorteKievit2013} Kriegeskorte, N., \& Kievit, R.~A. (2013). Representational geometry: Integrating cognition, computation, and the brain. \emph{Trends in Cognitive Sciences}, 17(8), 401--412. doi:10.1016/j.tics.2013.06.007.
+\bibitem[Liu et~al.(2026)]{Liu2026} Liu, L., Ferrante, O., Ghafari, T., Hetenyi, D., Yang, S., Hirschhorn, R., Gorska-Klimowska, U., Sripad, P., Taheriyan, F., Brown, T., et al. (2026). An open multi-center MEG-EEG dataset for studying conscious visual perception. \emph{Scientific Data}, 13, 799. doi:10.1038/s41597-026-07350-9.
+\bibitem[Mathewson et~al.(2009)]{Mathewson2009} Mathewson, K.~E., Gratton, G., Fabiani, M., Beck, D.~M., \& Ro, T. (2009). To see or not to see: Prestimulus alpha phase predicts visual awareness. \emph{Journal of Neuroscience}, 29(9), 2725--2732. doi:10.1523/JNEUROSCI.3963-08.2009.
+\bibitem[Palva and Palva(2018)]{Palva2018} Palva, J.~M., \& Palva, S. (2018). Functional integration across oscillation frequencies by cross-frequency phase synchronization. \emph{European Journal of Neuroscience}, 48(7), 2399--2406. doi:10.1111/ejn.13767.
+\bibitem[Reddy et~al.(2021)]{Reddy2021} Reddy, L., Cichy, R.~M., \& VanRullen, R. (2021). Representational content of oscillatory brain activity during object recognition: Contrasting cortical and deep neural network hierarchies. \emph{eNeuro}, 8(3), ENEURO.0362-20.2021. doi:10.1523/ENEURO.0362-20.2021.
+\bibitem[Shuman et~al.(2013)]{Shuman2013} Shuman, D.~I., Narang, S.~K., Frossard, P., Ortega, A., \& Vandergheynst, P. (2013). The emerging field of signal processing on graphs: Extending high-dimensional data analysis to networks and other irregular domains. \emph{IEEE Signal Processing Magazine}, 30(3), 83--98. doi:10.1109/MSP.2012.2235192.
+\bibitem[Terpstra et~al.(2022)]{Terpstra2022} Terpstra, M.~L., Maspero, M., Sbrizzi, A., \& van den Berg, C.~A.~T. (2022). Perpendicular loss: A symmetric loss function for magnetic resonance imaging reconstruction and image registration with deep learning. \emph{Medical Image Analysis}, 80, 102509. doi:10.1016/j.media.2022.102509.
+\bibitem[VanRullen(2016)]{VanRullen2016} VanRullen, R. (2016). Perceptual cycles. \emph{Trends in Cognitive Sciences}, 20(10), 723--735. doi:10.1016/j.tics.2016.07.006.
+\bibitem[Wardle et~al.(2016)]{Wardle2016} Wardle, S.~G., Kriegeskorte, N., Grootswagers, T., Khaligh-Razavi, S.-M., \& Carlson, T.~A. (2016). Perceptual similarity of visual patterns predicts dynamic neural activation patterns measured with MEG. \emph{NeuroImage}, 132, 59--70. doi:10.1016/j.neuroimage.2016.02.019.
+\bibitem[Geraedts et~al.(2018)]{Geraedts2018} Geraedts, V.~J., Boon, L.~I., Marinus, J., Gouw, A.~A., van Hilten, J.~J., Stam, C.~J., Tannemaat, M.~R., \& Contarino, M.~F. (2018). Clinical correlates of quantitative EEG in Parkinson disease: A systematic review. \emph{Neurology}, 91(19), 871--883. doi:10.1212/WNL.0000000000006473.
+\bibitem[McMackin et~al.(2019)]{McMackin2019} McMackin, R., Bede, P., Pender, N., Hardiman, O., \& Nasseroleslami, B. (2019). Neurophysiological markers of network dysfunction in neurodegenerative diseases. \emph{NeuroImage: Clinical}, 22, 101706. doi:10.1016/j.nicl.2019.101706.
+\bibitem[Bai et~al.(2021)]{Bai2021} Bai, Y., Lin, Y., \& Ziemann, U. (2021). Managing disorders of consciousness: the role of electroencephalography. \emph{Journal of Neurology}, 268, 4033--4065. doi:10.1007/s00415-020-10095-z.
+\bibitem[Radcliffe et~al.(2023)]{Radcliffe2023} Radcliffe, E.~M., Baumgartner, A.~J., Kern, D.~S., Al Borno, M., Ojemann, S., Kramer, D.~R., \& Thompson, J.~A. (2023). Oscillatory beta dynamics inform biomarker-driven treatment optimization for Parkinson's disease. \emph{Journal of Neurophysiology}, 129(6), 1492--1504. doi:10.1152/jn.00055.2023.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,5 @@
+Endpoint,Cohort,Required population empirical test,Required paired subject test,Alpha
+INTERFERENCE,CA_Level5A,observed>null and empirical p<0.025,mean(observed-subject_null_mean)>0 and signflip p<0.025,0.025
+INTERFERENCE,CB_Level6A_strict,observed>null and empirical p<0.025,mean(observed-subject_null_mean)>0 and signflip p<0.025,0.025
+ANGLE,CA_Level5A,observed>null and empirical p<0.025,mean(observed-subject_null_mean)>0 and signflip p<0.025,0.025
+ANGLE,CB_Level6A_strict,observed>null and empirical p<0.025,mean(observed-subject_null_mean)>0 and signflip p<0.025,0.025

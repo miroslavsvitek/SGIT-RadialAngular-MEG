@@ -1,0 +1,142 @@
+{
+  "suite": "SGIT_PAPER02_INTERFERENCE_v1_0",
+  "purpose": "Frozen adjudication of what drives the previously observed AP > AMP reliability: multiplicative amplitude scaffold versus phase-specific interference",
+  "status": "FROZEN_BEFORE_PAPER02_COMPONENT_OUTCOMES",
+  "cohorts": {
+    "CA_Level5A": [
+      "CA101",
+      "CA102",
+      "CA103",
+      "CA104",
+      "CA106",
+      "CA107",
+      "CA108",
+      "CA109",
+      "CA110",
+      "CA112",
+      "CA113",
+      "CA114",
+      "CA116",
+      "CA118",
+      "CA121",
+      "CA125",
+      "CA126",
+      "CA127",
+      "CA128",
+      "CA131",
+      "CA132",
+      "CA133",
+      "CA134",
+      "CA136",
+      "CA138",
+      "CA139",
+      "CA142",
+      "CA144",
+      "CA145",
+      "CA146"
+    ],
+    "CB_Level6A_strict": [
+      "CB001",
+      "CB002",
+      "CB003",
+      "CB006",
+      "CB008",
+      "CB011",
+      "CB015",
+      "CB016",
+      "CB019",
+      "CB020",
+      "CB022",
+      "CB023",
+      "CB024",
+      "CB027",
+      "CB028",
+      "CB029",
+      "CB030",
+      "CB031",
+      "CB035",
+      "CB036",
+      "CB038",
+      "CB039",
+      "CB040",
+      "CB041",
+      "CB042",
+      "CB044",
+      "CB045",
+      "CB049",
+      "CB050",
+      "CB051"
+    ]
+  },
+  "frozen_signal_pipeline": {
+    "K": 16,
+    "fs_hz": 250.0,
+    "theta_hz": [
+      4.0,
+      8.0
+    ],
+    "alpha_hz": [
+      8.0,
+      13.0
+    ],
+    "post_window_s": [
+      0.05,
+      0.25
+    ],
+    "common_subspace_rank": 2,
+    "runs": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "categories": [
+      "face",
+      "object",
+      "letter",
+      "false"
+    ],
+    "partitions": "all 15 unique disjoint 2-vs-2 run partitions; unused fifth run ignored"
+  },
+  "exact_three_term_decomposition": {
+    "ENERGY": "sum_m (A_i,m^2 + A_j,m^2)",
+    "PRODUCT": "sum_m 2 A_i,m A_j,m",
+    "COSINE": "sum_m 2 A_i,m A_j,m cos(phi_i,m - phi_j,m)",
+    "INTERFERENCE": "-COSINE",
+    "ANGLE": "sum_m 2 [1 - cos(phi_i,m - phi_j,m)]",
+    "identities": [
+      "AMP = ENERGY - PRODUCT",
+      "AP = PRODUCT - COSINE = PRODUCT + INTERFERENCE",
+      "FULL = ENERGY - COSINE = ENERGY + INTERFERENCE"
+    ]
+  },
+  "primary_metric": "spearman",
+  "secondary_metrics": [
+    "pearson",
+    "kendall"
+  ],
+  "primary_tests": {
+    "phase_specific_reproducibility": "INTERFERENCE cross-run reliability > 0 in each cohort by one-sided subject-level sign-flip p < 0.025",
+    "phase_contribution_to_full": "cross-half INTERFERENCE-to-FULL congruence > 0 in each cohort by one-sided subject-level sign-flip p < 0.025",
+    "product_scaffold_reproducibility": "PRODUCT cross-run reliability > 0 in each cohort by one-sided subject-level sign-flip p < 0.025"
+  },
+  "decision_logic": {
+    "MIXED_PHASE_AND_PRODUCT": "INTERFERENCE reliability and INTERFERENCE-to-FULL congruence pass in both cohorts, and PRODUCT reliability passes in both cohorts",
+    "PHASE_SPECIFIC_WITHOUT_PRODUCT_DOMINANCE": "INTERFERENCE reliability and INTERFERENCE-to-FULL congruence pass in both cohorts, PRODUCT fails in at least one cohort",
+    "PRODUCT_SCAFFOLD_DOMINANT": "PRODUCT reliability passes in both cohorts, while phase-specific criterion fails",
+    "INDETERMINATE": "none of the above"
+  },
+  "bootstrap_B": 20000,
+  "signflip_B": 100000,
+  "signflip_seed": 2026091208,
+  "interpretation_guardrail": "PAPER02 is a prospectively frozen component analysis motivated by the prior phase-shuffle result, but it reuses previously analyzed CA and CB cohorts. It is an adjudication/falsification analysis, not a new independent neural cohort confirmation and not evidence of consciousness specificity or causality.",
+  "provenance": {
+    "motivating_paper01_export": "SGIT_PAPER_CONTROLS_RESULTS_20260912_170507.zip",
+    "motivating_paper01_export_sha256": "7c12d93915b22c0c8aed373ba66fa399c3ca3c258afb3c2c549db98f0bab119d",
+    "paper01_validated_data_paths": {
+      "CA": "D:\\SGIT\\SGIT_COGITATE_Population_Runner_v2_1\\cohort_finetf",
+      "CB": "D:\\SGIT\\SGIT_LEVEL6_AllInOne_v3_0\\SGIT_LEVEL6_AllInOne_v3_1\\level6_data\\cohort_finetf_cb"
+    }
+  }
+}
